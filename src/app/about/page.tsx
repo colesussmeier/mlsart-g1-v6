@@ -7,9 +7,9 @@ const About = () => {
       <div className="about-page-container max-w-[80vw] pt-8 flex flex-col items-center space-y-5">
         <h2 className="font-bold text-xl">Artist Statement</h2>
         <p>
-        Having lived in the Hudson Valley my entire life, I've developed a deep appreciation for its beauty. 
+        Having lived in the Hudson Valley my entire life, I&apos;ve developed a deep appreciation for its beauty. 
         This includes the mountains, the Hudson River, and the quaint towns along the river, such as Cold Spring, where I live. 
-        I'm also captivated by the woods, the small streams and ponds, all encased in the most beautiful skies. 
+        I&apos;m also captivated by the woods, the small streams and ponds, all encased in the most beautiful skies. 
         The colors of nature have always fascinated me and are reflective in my painting.
         </p>
         <p>
