@@ -11,7 +11,7 @@ import config from '../../amplifyconfiguration.json';
 
 Amplify.configure(config);
 
-export function Mom({ signOut, user }: WithAuthenticatorProps) {
+const Mom: React.FC<any> = (props) => {
     const [image, setImage] = useState<string | null>(null);
     const [orders, setOrders] = useState<any[]>([]);
 
@@ -26,7 +26,7 @@ export function Mom({ signOut, user }: WithAuthenticatorProps) {
 
   return (
     <>
-    <main className="flex flex-col w-full h-[100vh] items-center">
+    <main className="flex flex-col w-full h-[100vh] items-center" {...props}>
 
     <header>
         <h1 className="font-bold underline text-lg pt-10">Add new Product</h1>
@@ -114,7 +114,7 @@ export function Mom({ signOut, user }: WithAuthenticatorProps) {
         </tbody>
     </table>
 
-<button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-44" onClick={signOut}>Sign out</button>
+<button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-44" onClick={props.signOut}>Sign out</button>
     </main>
     </>
   );
