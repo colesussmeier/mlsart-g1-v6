@@ -6,6 +6,10 @@ import '@aws-amplify/ui-react/styles.css';
 import { useEffect, useState } from 'react';
 import { uploadProduct } from '../actions/uploadProduct';
 import { getOrders } from '../actions/getOrders';
+import { Amplify } from 'aws-amplify';
+import config from '../../amplifyconfiguration.json';
+
+Amplify.configure(config);
 
 export function Mom({ signOut, user }: WithAuthenticatorProps) {
     const [image, setImage] = useState<string | null>(null);
