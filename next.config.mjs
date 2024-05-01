@@ -8,6 +8,7 @@ const nextConfig = {
             port: '',
             pathname: '**',
         }],
+        minimumCacheTTL: 60,
     },
 };
 
