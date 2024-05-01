@@ -16,14 +16,14 @@ export default function Product({ params }:
             return product.title === decodedTitle;
         });
     
-        const { image: url, title, price, size, collection } = product;
+        const { image, title, price, size, collection } = product;
     return (
         <div className="h-[100vh] pt-14">
             <div className="flex flex-col lg:flex-row w-full items-center">
                 <div className="flex flex-row w-1/2 justify-center items-center">
                     <Image 
                         className="rounded"
-                        src={url} 
+                        src={image}
                         alt={title}
                         height={500}
                         width={700}/>
