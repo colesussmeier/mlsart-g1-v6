@@ -10,20 +10,21 @@ export default function Product({ params }:
         const router = useRouter();
         const { products } = useProductContext();
         const { addToCart } = useCartContext();
+        const decodedTitle = decodeURIComponent(params.id);
     
         const product = products.find((product: any) => {
-            const decodedTitle = decodeURIComponent(params.id);
             return product.title === decodedTitle;
         });
     
-        const { image, title, price, size, collection } = product;
+        const { title, price, size, collection } = product;
+        const url = "https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/" + decodedTitle + ".jpg";
     return (
         <div className="h-[100vh] pt-14">
-            <div className="flex flex-col lg:flex-row w-full items-center">
+            <div className="flex flex-col lg:flex-row w-full items-center lg:mx-14">
                 <div className="flex flex-row w-1/2 justify-center items-center">
                     <Image 
                         className="rounded"
-                        src={image}
+                        src={url}
                         alt={title}
                         height={500}
                         width={700}

@@ -44,7 +44,7 @@ function Gallery() {
                                         width={2000}
                                         height={1000}
                                         sizes="(max-width: 768px) 100vw, 33vw"
-                                        className="max-h-96"/>
+                                        className="max-h-[20rem]"/>
                                 </Link>
                             )}
                         </div>
