@@ -17,16 +17,27 @@ export default function Home() {
     <>
       <div className="flex flex-col items-center justify-between h-[92vh] md:h-[94vh] lg:h-[98vh]">
         <div className="absolute inset-0 z-[-1]">
-          <Image fill src="/TurquoiseAbstract.jpg" alt="background" quality={100}/>
+          <Image fill src="/heroCover.jpg" alt="background" quality={90}/>
         </div>
         <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="text-6xl font-extrabold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.6)] text-center bottom-10 pb-10 text-white">Mary Lou Sussmeier</h1>
-          <p className="text-3xl font-bold pb-12 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.6)] text-center text-white">Local watercolor artist in the Hudson Valley</p>
-          <ScrollToButton />
+          <p className="text-3xl lg:text-4xl pb-5 lg:pb-12 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.6)] text-center text-custom-blue pt-20 lg:pt-32">Local watercolor artist in the Hudson Valley</p>
         </div>
       </div>
-      <div>
-      <h1 className="text-5xl font-bold text-center pb-16 text-black">Gallery</h1>
+      <div className="text-black max-w-64 lg:max-w-7xl mx-auto space-y-5 lg:space-y-0 lg:space-x-52 flex flex-col lg:flex-row items-center justify-center py-14">
+      <p className="text-black">
+        Having lived in the Hudson Valley my entire life, I&apos;ve developed a deep appreciation for its beauty. 
+        This includes the mountains, the Hudson River, and the quaint towns along the river, such as Cold Spring, where I live. 
+        I&apos;m also captivated by the woods, the small streams and ponds, all encased in the most beautiful skies. 
+        The colors of nature have always fascinated me and are reflective in my painting.
+        </p>
+        <p>
+          As an Interior Designer, design and color were always things I spent much of my time thinking about. 
+          After raising my kids, I couldn&apos;t wait to get started on my watercolor journey. Painting has always
+          been therapeutic for me and I look forward to every moment that I can get doing what I love.
+        </p>
+        </div>
+        <div>
+      <h1 className="text-5xl font-bold text-center pb-16 text-custom-blue">Gallery</h1>
         <Gallery />
       </div>
     </>

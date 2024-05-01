@@ -28,7 +28,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Hudson Valley Watercolors"/>
       </Head>
-      <body className={philosopher.className}>
+      <body className={cinzel.className}>
         <Nav />
           <ProductProvider>
             <CartProvider> 

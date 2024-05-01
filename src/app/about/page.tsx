@@ -1,30 +1,23 @@
 import React from 'react';
+import Image from 'next/image';
 
 
 const About = () => {
   return (
     <div className="flex flex-col items-center min-h-[100vh]">
       <div className="about-page-container max-w-[80vw] pt-8 flex flex-col items-center space-y-5">
-        <h2 className="font-bold text-xl">Artist Statement</h2>
-        <p>
-        Having lived in the Hudson Valley my entire life, I&apos;ve developed a deep appreciation for its beauty. 
-        This includes the mountains, the Hudson River, and the quaint towns along the river, such as Cold Spring, where I live. 
-        I&apos;m also captivated by the woods, the small streams and ponds, all encased in the most beautiful skies. 
-        The colors of nature have always fascinated me and are reflective in my painting.
-        </p>
-        <p>
-          Having spent most of my life as an Interior Designer, design and color were always a big part of my
-          thinking. After raising my kids, I couldn&apos;t wait to get started on my watercolor journey. Painting has always
-          been therapeutic for me and I look forward to every moment that I can get doing something that I love.
-        </p>
     
         <h2 className="font-bold text-xl">About</h2>
+        <div className="flex flex-col space-y-7 lg:flex-row items-center lg:space-x-24">
+        <Image src="/headshot.jpg" alt="Mary Lou Sussmeier" width={300} height={300} className="rounded"/>
+        <div className="space-y-7">
         <p>
           “If you could do anything you wanted, what would it be?” This was the question posed to Mary Lou, a
           working mother of two very young boys, at a New Year&apos;s Eve dinner in the early 2000&apos;s. Her answer: “I&apos;d
           paint all the time.” Twenty years and two grown men later, Mary Lou is living her dream, painting
           watercolors of her beloved Hudson Valley.
         </p>
+
         <p>
           Everyday life hits Mary Lou&apos;s eyes differently than other people. Most people would walk into a family
           den strewn with wooden building blocks, books, and record album covers and think ugh, what a mess!
@@ -33,6 +26,8 @@ const About = () => {
           curating the spaces around her - arranging books on shelves, items on desks, glassware in the cabinets,
           or furniture in the rooms - in ways that showcased their beauty and that invariably caught the eye.
         </p>
+        </div>
+        </div>
         <p>
           This talent for transforming spaces led her to one of the preeminent colleges for interior design, the
           Fashion Institute of Technology in NYC. It is there that Mary Lou polished her innate ability to find the
