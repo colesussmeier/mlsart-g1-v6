@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <div className="flex flex-col items-center justify-between h-[92vh] md:h-[94vh] lg:h-[98vh]">
         <div className="absolute inset-0 z-[-1]">
-          <Image fill src="/heroCover.jpg" alt="background" quality={90}/>
+          <Image fill src="/heroCover.jpg" alt="background" quality={90} priority={true}/>
         </div>
         <div className="flex flex-col items-center justify-center h-screen">
           <p className="text-3xl lg:text-4xl pb-5 lg:pb-12 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.6)] text-center text-custom-blue pt-8 lg:pt-32">Local watercolor artist in the Hudson Valley</p>

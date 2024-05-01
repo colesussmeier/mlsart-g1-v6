@@ -26,7 +26,7 @@ function Gallery() {
                             {product.isPurchased ? (
                                 <div className="relative">
                                 <Image 
-                                    className="opacity-50"
+                                    className="opacity-50 max-h-96"
                                     src={product.image} 
                                     alt={product.title} 
                                     width={2000}
@@ -43,7 +43,8 @@ function Gallery() {
                                         alt={product.title} 
                                         width={2000}
                                         height={1000}
-                                        sizes="(max-width: 768px) 100vw, 33vw"/>
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="max-h-96"/>
                                 </Link>
                             )}
                         </div>

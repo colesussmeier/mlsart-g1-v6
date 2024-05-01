@@ -26,14 +26,15 @@ export default function Product({ params }:
                         src={image}
                         alt={title}
                         height={500}
-                        width={700}/>
+                        width={700}
+                        priority={true}/>
                 </div>
                 <div className="w-1/2 pt-5 flex flex-col content-center text-center text-lg justify-center items-center space-y-6">
                     <h1>{title}</h1>
-                    <p>{collection} Collection</p>
+                    <p className="text-sm">{collection} Collection</p>
                     <p>Size - {size}</p>
                     <p>Price - ${price}</p>
-                    <button type="button" className="bg-gray-300 border-2 border-gray-500 w-28 rounded"
+                    <button type="button" className="bg-gray-300 border-2 border-gray-500 w-32 py-1 rounded"
                     onClick={() => {
                         router.push('/cart');
                         addToCart({ ...product });

@@ -36,7 +36,7 @@ export default function CheckoutButton() {
 
   return (
     <div>
-      <button className="bg-gray-300 border-2 border-gray-500 w-28 rounded" onClick={handleCheckout}>Checkout</button>
+      <button className="bg-gray-300 border-2 border-gray-500 w-32 py-1 rounded" onClick={handleCheckout}>Checkout</button>
     </div>
   );
 }

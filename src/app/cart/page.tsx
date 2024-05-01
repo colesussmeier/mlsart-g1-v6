@@ -16,7 +16,7 @@ export default function Cart() {
                     const { SK, title, price, amount, image } = product;
                     return (
                         <div key={SK} className="flex flex-row justify-between w-full p-5">
-                            <Image className="rounded h-1/2 w-1/2 mt-4 lg:mt-0" src={image} alt={title} width={400} height={200} />
+                            <Image className="rounded h-1/2 w-1/2 mt-4 lg:mt-0" src={image} alt={title} width={400} height={200} priority={true} />
                             <div className="flex flex-col justify-center text-right">
                                 <h2 className="text-2xl">{title}</h2>
                                 <p className="text-2xl">${price}</p>
@@ -27,7 +27,7 @@ export default function Cart() {
             </div>
             <h2 className="text-2xl mt-5">Subtotal: ${total}</h2>
             <div className="flex flex-row justify-between w-3/4 m-10 lg:w-1/2 p-2">
-            <button className="bg-gray-300 border-2 border-gray-500 w-28 rounded" onClick={clearCart}>Clear Cart</button>
+            <button className="bg-gray-300 border-2 border-gray-500 w-32 py-1 rounded" onClick={clearCart}>Clear Cart</button>
             <CheckoutButton/>
             </div>
             </>}
