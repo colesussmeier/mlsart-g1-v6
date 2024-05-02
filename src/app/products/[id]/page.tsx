@@ -21,13 +21,13 @@ export default function Product({ params }:
     return (
         <div className="h-[100vh] pt-14">
             <div className="flex flex-col lg:flex-row w-full items-center">
-                <div className="flex flex-row w-1/2 justify-center items-center lg:mx-14">
+                <div className="flex flex-row w-2/3 md:w-1/2 justify-center items-center lg:mx-14">
                     <Image 
                         className="rounded"
                         src={url}
                         alt={title}
-                        height={500}
-                        width={700}
+                        width={375}
+                        height={275}
                         priority={true}/>
                 </div>
                 <div className="w-1/2 pt-5 flex flex-col content-center text-center text-lg justify-center items-center space-y-6">
