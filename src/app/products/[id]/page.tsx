@@ -20,8 +20,8 @@ export default function Product({ params }:
         const url = "https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/" + decodedTitle + ".jpg";
     return (
         <div className="h-[100vh] pt-14">
-            <div className="flex flex-col lg:flex-row w-full items-center lg:mx-14">
-                <div className="flex flex-row w-1/2 justify-center items-center">
+            <div className="flex flex-col lg:flex-row w-full items-center">
+                <div className="flex flex-row w-1/2 justify-center items-center lg:mx-14">
                     <Image 
                         className="rounded"
                         src={url}

@@ -24,9 +24,9 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center">
-          <p className="text-3xl lg:text-4xl pb-5 lg:pb-12 text-center text-custom-blue pt-5">Local watercolor artist in the Hudson Valley</p>
+          <p className="text-3xl lg:text-4xl pb-5 lg:pb-12 text-center text-custom-blue">Local watercolor artist in the Hudson Valley</p>
       </div>
-      <div className="text-black max-w-64 lg:max-w-7xl mx-auto px-2 lg:px-7 space-y-5 lg:space-y-0 lg:space-x-28 flex flex-col lg:flex-row items-center justify-center pt-5 pb-16">
+      <div className="text-black max-w-80 md:max-w-7xl mx-auto px-2 md:px-7 space-y-5 md:space-y-0 md:space-x-28 flex flex-col md:flex-row items-center justify-center pt-5 pb-14">
       <p className="text-black">
         Having lived in the Hudson Valley my entire life, I&apos;ve developed a deep appreciation for its beauty. 
         This includes the mountains, the Hudson River, and the quaint towns along the river. 
@@ -40,7 +40,7 @@ export default function Home() {
         </p>
         </div>
         <div>
-      <h1 className="text-5xl text-center pb-16 text-custom-blue">Gallery</h1>
+      <p className="text-3xl lg:text-4xl text-center pb-16 text-custom-blue">Gallery</p>
         <Gallery />
       </div>
     </>

@@ -44,7 +44,7 @@ const Privacy = () => {
             <p className="text-center">Our website uses only necessary cookies. These are small files placed on your device that are essential for the basic functionality of our website, such as enabling navigation or facilitating the checkout process. We do not use cookies for tracking or advertising purposes.</p>
 
             <h2 className="font-bold">Children&apos;s Privacy</h2>
-            <p>Our website is not intended for children under the age of 13. We do not knowingly collect information from children under 13.</p>
+            <p className="text-center">Our website is not intended for children under the age of 13. We do not knowingly collect information from children under 13.</p>
 
             <h2 className="font-bold">Changes To This Privacy Policy</h2>
             <p className="text-center">We may update this Privacy Policy. Any changes will be reflected by the &quot;Effective Date&quot; above. Your continued use of the website after changes are made indicates your acceptance of the revised Privacy Policy.</p> 

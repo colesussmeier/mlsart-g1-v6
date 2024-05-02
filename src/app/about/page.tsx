@@ -7,7 +7,7 @@ const About = () => {
     <div className="flex flex-col items-center min-h-[100vh]">
       <div className="about-page-container max-w-[80vw] pt-8 flex flex-col items-center space-y-5">
     
-        <h2 className="font-bold text-xl">About</h2>
+        <h1 className="text-3xl text-center my-5">About</h1>
         <div className="flex flex-col space-y-7 lg:flex-row items-center lg:space-x-24">
         <Image src="/headshot.jpg" alt="Mary Lou Sussmeier" width={300} height={300} className="rounded" priority={true}/>
         <div className="space-y-7">
@@ -37,7 +37,7 @@ const About = () => {
         </p>
         <p>
           But Mary Lou&apos;s talents have never been limited to interior design. She and her engineer husband
-          designed and built their one-of-a-kind mountaintop post &amp; beam home that brought the outside in. The
+          designed and built their one-of-a-kind mountaintop post &amp; beam home that brings the outside in. The
           house sits beside a beautiful pond, that they built themselves, and is surrounded by acres of trees
           and miles of streams that frequently find their way into her paintings. Mary Lou, an avid gardener and
           landscape enthusiast, created a breathtaking arrangement of plants and wild grasses around the pond.
