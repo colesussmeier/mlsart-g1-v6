@@ -32,8 +32,7 @@ function Gallery() {
                                     width={width * 100}
                                     height={height * 100}
                                     objectFit="cover"
-                                    layout='responsive'
-                                    sizes="(max-width: 768px) 100vw, 33vw"/>
+                                    layout='responsive'/>
                                 <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-red-600">Sold</p>
                                 </div>
                             ) : (
@@ -41,9 +40,8 @@ function Gallery() {
                                     <Image 
                                         src={product.image} 
                                         alt={product.title} 
-                                        width={width * 100}
-                                        height={height * 100}
-                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        width={750}
+                                        height={550}
                                         className="md:max-w-[30vw] md:max-h-[20vw]"
                                         />
                                 </Link>

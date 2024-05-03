@@ -26,8 +26,8 @@ export default function Product({ params }:
                         className="rounded"
                         src={url}
                         alt={title}
-                        width={375}
-                        height={275}
+                        width={750}
+                        height={550}
                         priority={true}/>
                 </div>
                 <div className="w-1/2 pt-5 flex flex-col content-center text-center text-lg justify-center items-center space-y-6">

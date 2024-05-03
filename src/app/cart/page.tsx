@@ -16,15 +16,15 @@ export default function Cart() {
                     const { SK, title, price, amount, image } = product;
                     return (
                         <div key={SK} className="flex flex-row justify-between w-full p-5">
-                            <Image className="rounded h-1/2 w-1/2 mt-4 lg:mt-0"
+                            <Image className="rounded mt-5 lg:mt-0 max-w-24 md:max-w-none max-h-20 md:max-h-none"
                                  src={image}
                                  alt={title}
                                  width={400}
                                  height={200}
                                  priority={true} />
-                            <div className="flex flex-col justify-center text-right">
-                                <h2 className="text-2xl">{title}</h2>
-                                <p className="text-2xl">${price}</p>
+                            <div className="flex flex-col justify-center text-right max-w-32 mt-5 md:mt-0">
+                                <h2 className="text-xl">{title}</h2>
+                                <p className="text-xl">${price}</p>
                             </div>
                         </div>
                     );
