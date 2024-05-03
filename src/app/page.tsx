@@ -23,7 +23,7 @@ export default function Home() {
           <ScrollToButton />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center -mt-5 md:mt-0">
+      <div className="flex flex-col items-center justify-center -mt-8 md:mt-0">
           <p className="text-3xl lg:text-4xl pb-5 lg:pb-12 text-center text-custom-blue">Local watercolor artist in the Hudson Valley</p>
       </div>
       <div className="text-black max-w-80 md:max-w-7xl mx-auto px-2 md:px-7 space-y-5 md:space-y-0 md:space-x-28 flex flex-col md:flex-row items-center justify-center pt-5 pb-14">
