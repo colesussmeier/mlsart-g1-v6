@@ -28,8 +28,13 @@ export function CartProvider({ children }: {
 
     const addToCart = (product: any) => {
         const { SK, title, price, image, stripeId } = product;
-        const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId }];
-        setCart(cartItems);
+        const existingProductIndex = cart.findIndex((p: any) => p.SK === SK);
+        if (existingProductIndex == -1) {
+            const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId }];
+            setCart(cartItems);
+        } else {
+            console.log("duplicate item");
+        }
     };
 
     const clearCart = () => {

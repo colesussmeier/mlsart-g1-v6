@@ -1,6 +1,6 @@
 "use client";
 
-import { Philosopher, Cinzel } from "next/font/google";
+import { Cinzel } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/nav";
 import Footer from "./components/footer";
@@ -14,7 +14,6 @@ import { CartProvider } from "./context/cart";
 Amplify.configure(config, { ssr: true })
 
 const cinzel = Cinzel({ subsets: ["latin"] });
-const philosopher = Philosopher({ weight: "400", style: "normal", subsets: ["latin"]});
 
 
 export default function RootLayout({
@@ -28,6 +27,15 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Hudson Valley Watercolors"/>
       </Head>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-Z95YLTM9MW"></Script>
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-Z95YLTM9MW');
+        `}
+      </Script>
       <body className={cinzel.className}>
         <Nav />
           <ProductProvider>

@@ -31,7 +31,7 @@ export default function Home() {
         Having lived in the Hudson Valley my entire life, I&apos;ve developed a deep appreciation for its beauty. 
         This includes the mountains, the Hudson River, and the quaint towns along the river. 
         I&apos;m also captivated by the woods, the small streams and ponds, all encased in the most beautiful skies. 
-        The colors of nature have always fascinated me and are reflective in my painting.
+        The colors of nature have always fascinated me and are reflected in my painting.
         </p>
         <p>
           As an Interior Designer, design and color were always things I spent much of my time thinking about. 
