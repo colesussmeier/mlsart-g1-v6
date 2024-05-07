@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center justify-between h-[92vh] md:h-[94vh] lg:h-[98vh]">
+      <div className="flex flex-col items-center justify-between h-[98vh]">
         <div className="absolute inset-0 z-[-1]">
           <Image fill src="/heroCover.jpg" alt="background" quality={90} priority={true}/>
         </div>
@@ -23,7 +23,7 @@ export default function Home() {
           <ScrollToButton />
         </div>
       </div>
-      <div>
+      <div className="-mt-5">
       <p className="text-3xl lg:text-4xl text-center pb-16 text-custom-blue">Gallery</p>
         <Gallery />
       </div>
