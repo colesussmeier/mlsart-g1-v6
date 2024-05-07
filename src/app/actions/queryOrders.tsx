@@ -3,7 +3,7 @@
 import {  DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 
-export async function getOrders() {
+export async function queryOrders() {
     const access_key = process.env.PUBLIC_AWS_KEY;
     const secret_access_key = process.env.PRIVATE_AWS_KEY;
     const table_name = process.env.DYNAMO_TABLE;
@@ -23,6 +23,7 @@ export async function getOrders() {
             ExpressionAttributeNames: {
                 "#pk": "PK",
                 "#sk": "SK",
+                "#shipTo": "shipTo",
                 "#address": "address",
                 "#createdAt": "createdAt",
                 "#total": "total",
@@ -32,7 +33,7 @@ export async function getOrders() {
             ExpressionAttributeValues: {
                 ":pk": { S: "Order|Purchased" }
             },
-            ProjectionExpression: "#sk, #address, #createdAt, #total, #keys"
+            ProjectionExpression: "#sk, #shipTo, #address, #createdAt, #total, #keys"
         }));
         const convertedResult = data.Items ? data.Items.map(item => unmarshall(item)) : null;
         return convertedResult;

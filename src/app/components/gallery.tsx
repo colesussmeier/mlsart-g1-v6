@@ -26,14 +26,13 @@ function Gallery() {
                             {product.isPurchased ? (
                                 <div className="relative">
                                 <Image 
-                                    className="opacity-50 max-h-96 md:max-w-[30vw] md:max-h-[20vw]"
+                                    className="opacity-50 rounded max-h-96 md:max-w-[30vw] md:max-h-[20vw]"
                                     src={product.image} 
                                     alt={product.title} 
-                                    width={width * 100}
-                                    height={height * 100}
-                                    objectFit="cover"
-                                    layout='responsive'/>
-                                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-red-600">Sold</p>
+                                    width={750}
+                                    height={550}
+                                    />
+                                <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold text-black">Sold</p>
                                 </div>
                             ) : (
                                 <Link href={`/products/${product.title}`}>
@@ -42,7 +41,7 @@ function Gallery() {
                                         alt={product.title} 
                                         width={750}
                                         height={550}
-                                        className="md:max-w-[30vw] md:max-h-[20vw]"
+                                        className="rounded md:max-w-[30vw] md:max-h-[20vw]"
                                         />
                                 </Link>
                             )}

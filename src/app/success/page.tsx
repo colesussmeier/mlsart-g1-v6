@@ -11,10 +11,9 @@ export default function Success() {
     }, []);
 
     return (
-        <div className="h-[100vh] flex flex-col items-center justify-center space-y-4">
-            <h1 className="text-3xl font-bold">Order Successful!</h1>
-            <p className="text-xl">Thank you for your purchase.</p>
-            <p className="text-lg">You will receive an email when your product is shipped.</p>
+        <div className="h-[100vh] flex flex-col items-center text-center justify-center space-y-4">
+            <h1 className="text-3xl font-bold px-5">Order Successful!</h1>
+            <p className="text-lg px-5 md:max-w-lg">Thank you for your purchase! We&apos;ve sent an email confirmation and we&apos;ll send another when your order has shipped.</p>
         </div>
     );
 }

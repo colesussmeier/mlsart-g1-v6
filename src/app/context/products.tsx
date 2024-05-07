@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, createContext } from "react";
-import { getProducts } from "../actions/getProducts";
+import { queryProducts } from "../actions/queryproducts";
 
 const ProductContext = createContext<any>({
     products: [],
@@ -12,25 +12,20 @@ export function ProductProvider({ children } : {
     children:React.ReactNode;
     }) {
     const [products, setProducts] = useState<any>([]);
-    const [status, setStatus] = useState(null);
 
     async function fetchProducts() {
-        const result = await getProducts();
+        const result = await queryProducts();
         const sortedResult = result?.sort((a, b) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
         setProducts(sortedResult);
+        return sortedResult;
     };
     
     useEffect(() => {
         fetchProducts();
     }, []);
 
-    const resetProducts = () => {
-        setProducts([]);
-        fetchProducts();
-    };
-
     return (
-        <ProductContext.Provider value={{ products, status, resetProducts }}>
+        <ProductContext.Provider value={{ products }}>
             {children}
         </ProductContext.Provider>
     );

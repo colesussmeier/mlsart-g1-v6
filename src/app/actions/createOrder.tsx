@@ -22,6 +22,7 @@ export async function createOrder(chargeDetails: any) {
     const order = {
         PK: "Order|Purchased",
         SK: chargeDetails.email + "|" + uuidv4(),
+        shipTo: chargeDetails.shipTo,
         address: chargeDetails.address,
         total: chargeDetails.total,
         createdAt: new Date().toISOString(),

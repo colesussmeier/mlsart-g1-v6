@@ -3,7 +3,7 @@
 const ScrollToButton = () => {
     const scrollToBottom = () => {
       window.scrollTo({
-        top: window.innerHeight * 1.03,
+        top: window.innerHeight,
         behavior: 'smooth'
       });
     };

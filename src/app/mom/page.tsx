@@ -1,28 +1,38 @@
 "use client";
 
-import type { WithAuthenticatorProps } from '@aws-amplify/ui-react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import { useEffect, useState } from 'react';
 import { uploadProduct } from '../actions/uploadProduct';
-import { getOrders } from '../actions/getOrders';
+import { queryOrders } from '../actions/queryOrders';
 import { Amplify } from 'aws-amplify';
 import config from '../../amplifyconfiguration.json';
+import { getProduct } from '../actions/getProduct';
+import { updateOrder } from '../actions/updateOrder';
+import { sendConfirmationEmail } from '../actions/sendEmails';
+import Image from 'next/image';
 
 Amplify.configure(config);
 
 const Mom: React.FC<any> = (props) => {
     const [image, setImage] = useState<string | null>(null);
     const [orders, setOrders] = useState<any[]>([]);
+    const [products, setProducts] = useState<any[]>([]);
+    const [trackingLink, setTrackingLink] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchOrders = async () => {
-            const orders = await getOrders();
+            const orders = await queryOrders();
             setOrders(orders as any);
             console.log(orders);
         };
         fetchOrders();
     }, []);
+
+    const fetchProducts = async (pid) => {
+        const product = await getProduct(pid);
+        setProducts(prevProducts => [...prevProducts, product]);
+    }
 
   return (
     <>
@@ -91,30 +101,60 @@ const Mom: React.FC<any> = (props) => {
     <table className="table-auto w-2/4 mt-8">
         <thead>
             <tr>
-                <th className="px-4 py-2">Order ID</th>
                 <th className="px-4 py-2">Email</th>
+                <th className="px-4 py-2">Ship To</th>
                 <th className="px-4 py-2">Address</th>
                 <th className="px-4 py-2">Total</th>
-                <th className="px-4 py-2">Product ID(s)</th>
+                <th className="px-4 py-2">Paintings</th>
+                <th className="px-4 py-2">Ship it</th>
             </tr>
         </thead>
         <tbody>
         {orders.map((order, index) => {
         const splitSK = order.SK.split("|");
         return (
-            <tr key={index} className={index % 2 === 0 ? 'bg-gray-200' : ''}>
-                <td className="border px-4 py-2">{splitSK[1]}</td>
+            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
                 <td className="border px-4 py-2">{splitSK[0]}</td>
+                <td className="border px-4 py-2">{order.shipTo}</td>
                 <td className="border px-4 py-2">{`${order.address.line1}, ${order.address.city}, ${order.address.state}, ${order.address.postal_code}`}</td>
                 <td className="border px-4 py-2">{order.total}</td>
-                <td className="border px-4 py-2">{order.keys}</td>
+                <td className="border px-4 py-2">
+                    <details onToggle={async (e) => {
+                        if (e.currentTarget.open) {
+                          for (const key of order.keys) {
+                            await fetchProducts(key as string);
+                          }
+                        } else {
+                          setProducts([]);
+                        }
+                    }}>
+                        {products.map((product, index) => (
+                            <div key={index} className="flex flex-col items-center space-y-2">
+                                <Image src={product.image} width={100} height={50} alt={product.title} />
+                                <span>{product.title}</span>
+                            </div>
+                        ))}
+
+                    </details>
+                </td>
+                <td className="border px-4 py-2">
+                    <input type="text" name="tracking" placeholder="Paste tracking link here" 
+                        className="border mb-2" onChange={(e) => setTrackingLink(e.target.value)}/>
+                    <button onClick={() => {
+                        sendConfirmationEmail(splitSK[0], trackingLink);
+                        updateOrder(order.SK);
+                    }}
+                        type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Send shipping confirmation
+                    </button>
+                </td>
             </tr>
             );
         })}
         </tbody>
     </table>
 
-<button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-44" onClick={props.signOut}>Sign out</button>
+    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-44" onClick={props.signOut}>Sign out</button>
     </main>
     </>
   );

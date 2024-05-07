@@ -4,7 +4,7 @@ import {  DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 import { unmarshall } from "@aws-sdk/util-dynamodb";
 import { revalidateTag } from 'next/cache';
 
-export async function getProducts() {
+export async function queryProducts() {
     const access_key = process.env.PUBLIC_AWS_KEY;
     const secret_access_key = process.env.PRIVATE_AWS_KEY;
     const table_name = process.env.DYNAMO_TABLE;

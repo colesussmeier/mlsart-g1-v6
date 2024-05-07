@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse, NextRequest } from "next/server";
 import { createOrder } from "../../actions/createOrder";
+import { sendCustomerEmail } from "../../actions/sendEmails";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -22,13 +23,16 @@ export async function POST(req: NextRequest) {
     // payment_intent.created
 
     if (event.type === "charge.succeeded") {
+
       const chargeDetails = {
         pids: res?.data?.object.metadata,
         email: res?.data?.object.billing_details.email,
         address: res?.data?.object?.shipping?.address,
+        shipTo: res?.data?.object?.shipping?.name,
         total: Number(res?.data?.object.amount) / 100,
         receipt_url: res?.data?.object.receipt_url
       };
+      sendCustomerEmail(chargeDetails.email, chargeDetails.receipt_url);
       createOrder(chargeDetails);
     }
 

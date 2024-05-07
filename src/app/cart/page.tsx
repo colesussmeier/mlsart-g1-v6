@@ -17,7 +17,7 @@ export default function Cart() {
                     const { SK, title, price, amount, image } = product;
                     return (
                         <div key={SK} className="flex flex-row justify-between w-full p-5">
-                            <Image className="rounded mt-5 lg:mt-0 max-w-[150px] md:max-w-[375px] max-h-[110px] md:max-h-[275px]"
+                            <Image className="rounded mt-2 lg:mt-0 max-w-[150px] md:max-w-[375px] max-h-[110px] md:max-h-[275px]"
                                  src={image}
                                  alt={title}
                                  width={750}

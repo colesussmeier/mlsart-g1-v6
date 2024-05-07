@@ -11,7 +11,7 @@ export default function Product({ params }:
         const { products } = useProductContext();
         const { addToCart } = useCartContext();
         const decodedTitle = decodeURIComponent(params.id);
-    
+
         const product = products.find((product: any) => {
             return product.title === decodedTitle;
         });
