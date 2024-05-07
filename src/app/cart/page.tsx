@@ -23,7 +23,7 @@ export default function Cart() {
                                  width={750}
                                  height={550}
                                  priority={true} />
-                            <div className="flex flex-col justify-center text-right max-w-32 mt-5 md:mt-0">
+                            <div className="flex flex-col justify-center text-right max-w-32 mt-3 md:mt-0">
                                 <h2 className="text-xl">{title}</h2>
                                 <p className="text-xl">${price}</p>
                             </div>

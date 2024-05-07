@@ -15,16 +15,16 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center justify-between h-[92vh] md:h-[94vh] lg:[98vh]">
+      <div className="flex flex-col items-center justify-between h-screen relative">
         <div className="absolute inset-0 z-[-1]">
           <Image fill src="/heroCover.jpg" alt="background" quality={90} priority={true}/>
         </div>
-        <div className="flex flex-col items-center justify-center h-screen -mt-5 lg:mt-0">
+        <div className="flex flex-col items-center justify-center h-screen mt-20">
           <ScrollToButton />
         </div>
       </div>
-      <div className="-mt-8 lg:mt-10">
-      <p className="text-3xl lg:text-4xl text-center pb-10 lg:pb-16 text-custom-blue">Gallery</p>
+      <div>
+      <p className="text-3xl lg:text-4xl text-center pt-12 pb-10 lg:pb-16 text-custom-blue">Gallery</p>
         <Gallery />
       </div>
     </>
