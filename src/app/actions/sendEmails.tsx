@@ -83,6 +83,7 @@ const createSendAdminEmailCommand = (customer) => {
     Destination: {
       ToAddresses: [
         "colesussmeier@gmail.com",
+        "msussmeierart@gmail.com"
       ],
     },
     Message: {
