@@ -4,7 +4,16 @@ import { SESClient } from "@aws-sdk/client-ses";
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 
 const REGION = "us-east-1";
-const sesClient = new SESClient({ region: REGION });
+const access_key = process.env.PUBLIC_AWS_KEY;
+const secret_access_key = process.env.PRIVATE_AWS_KEY;
+
+const sesClient = new SESClient({ 
+  region: REGION, 
+  credentials: {
+    accessKeyId: access_key,
+    secretAccessKey: secret_access_key,
+  }
+});
 
 const createSendCustomerEmailCommand = (toAddress, receipt) => {
   return new SendEmailCommand({
