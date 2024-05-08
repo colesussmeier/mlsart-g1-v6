@@ -3,7 +3,6 @@
 import CheckoutButton from "../components/checkoutButton";
 import { useCartContext } from "../context/cart";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Cart() {
     const { cart, total, clearCart } = useCartContext();

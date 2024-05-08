@@ -1,3 +1,5 @@
+import 'server-only';
+
 import Image from "next/image";
 import ScrollToButton from "./components/scrollToButton";
 import React from 'react';
