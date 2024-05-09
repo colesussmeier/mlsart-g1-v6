@@ -6,6 +6,7 @@ import Image from "next/image";
 
 export default function Cart() {
     const { cart, total, clearCart } = useCartContext();
+
     return (
         <div className="flex flex-col w-full min-h-screen items-center">
             <h1 className="text-3xl text-center my-5">Cart</h1>

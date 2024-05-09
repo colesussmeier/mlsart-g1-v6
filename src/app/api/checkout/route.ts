@@ -13,7 +13,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       }));
 
       const SKs = body.SKs;
-
+      
       const session = await stripe.checkout.sessions.create({
         billing_address_collection: 'auto',
         shipping_address_collection: {
@@ -27,6 +27,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         success_url: `${req.headers.get('origin')}/success`,
         cancel_url: `${req.headers.get('origin')}/cancel`,
       });
+
       return NextResponse.json({id: session.id});
     } catch (err: any) {
       return NextResponse.json({ message: err.message }, { status: 500 });
