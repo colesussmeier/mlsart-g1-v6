@@ -161,4 +161,4 @@ const Mom: React.FC<any> = (props) => {
 }
 
 
-export default withAuthenticator(Mom);
+export default withAuthenticator(Mom, { hideSignUp: true });
