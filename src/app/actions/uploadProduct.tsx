@@ -52,7 +52,7 @@ export async function uploadProduct(formData: FormData) {
         image: `https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/${imageFile.name}`,
         size: formData.get('size') as string,
         collection: formData.get('collection') as string,
-        stripeId: price === 185 ? 'price_1P9WYrJyYHbUmOahD2t8IFqp' : price === 165 ? 'price_1P9vr0JyYHbUmOahs1dFCGyv' : '',
+        stripeId: price === 185 ? 'price_1PEHdpJyYHbUmOahmDlbyBBC' : price === 165 ? 'price_1PEHeHJyYHbUmOahKZihfmm0' : '',
         createdAt: new Date().toISOString()
     };
     
