@@ -14,9 +14,9 @@ const Terms = () => {
 
                 <h2 className="font-bold">2. Products and Services</h2>
                 <ul>
-                    <li>We offer original paintings created by Mary Lou Sussmeier for sale on our Website.</li>
-                    <li>Product descriptions and images are for representational purposes, and actual paintings may have slight variations.</li>
-                    <li>Prices are subject to change without notice.</li>
+                    <li>We offer original paintings created by Mary Lou Sussmeier for sale on our Website.
+                    Product descriptions and images are for representational purposes, and actual paintings may have slight variations.
+                    Prices are subject to change without notice.</li>
                 </ul>
 
                 <h2 className="font-bold">3. Ordering and Payment</h2>
@@ -36,7 +36,7 @@ const Terms = () => {
 
                 <h2 className="font-bold">5. Intellectual Property</h2> 
                 <ul>
-                    <li>All content on the Website, including paintings, images, text, and logos is protected by copyright.</li>
+                    <li>All website content is protected by copyright.</li>
                 </ul>
 
                 <h2 className="font-bold">6. User Conduct</h2>

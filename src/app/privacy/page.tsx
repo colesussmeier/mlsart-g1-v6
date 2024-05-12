@@ -41,7 +41,7 @@ const Privacy = () => {
             <p className="text-center">We take appropriate measures to protect your information from unauthorized access, use, or disclosure. However, no data transmission over the internet is 100% secure.</p> 
 
             <h2 className="font-bold">Cookies</h2>
-            <p className="text-center">Our website uses only necessary cookies. These are small files placed on your device that are essential for the basic functionality of our website, such as enabling navigation or facilitating the checkout process. We do not use cookies for tracking or advertising purposes.</p>
+            <p className="text-center">Our website uses only necessary cookies. These are small files placed on your device that are essential for the basic functionality of our website, such as enabling navigation or facilitating the checkout process. We do not use cookies for advertising purposes.</p>
 
             <h2 className="font-bold">Children&apos;s Privacy</h2>
             <p className="text-center">Our website is not intended for children under the age of 13. We do not knowingly collect information from children under 13.</p>
