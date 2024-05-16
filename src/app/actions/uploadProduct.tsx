@@ -9,6 +9,10 @@ export async function uploadProduct(formData: FormData) {
     //UPLOAD IMAGE TO S3
     const imageFile = formData.get('image') as File;
 
+    const access_key = process.env.PUBLIC_AWS_KEY;
+    const secret_access_key = process.env.PRIVATE_AWS_KEY;
+    const table_name = process.env.DYNAMO_TABLE;
+
     if(!imageFile) {
         throw new Error('No file uploaded');
     }
@@ -16,7 +20,14 @@ export async function uploadProduct(formData: FormData) {
     const bytes = await imageFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const s3Client = new S3Client({ region: "us-east-1" });
+    const s3Client = new S3Client({ 
+        region: "us-east-1",
+        credentials: {
+          accessKeyId: access_key as string,
+          secretAccessKey: secret_access_key as string
+        }
+      });
+    
     const uploadParams = {
         Bucket: "image-bucketa5861-dev",
         Key: imageFile.name,
@@ -30,10 +41,6 @@ export async function uploadProduct(formData: FormData) {
     }
 
     // UPDATE DYNAMO TABLE
-    const access_key = process.env.PUBLIC_AWS_KEY;
-    const secret_access_key = process.env.PRIVATE_AWS_KEY;
-    const table_name = process.env.DYNAMO_TABLE;
-
     const dynamoClient = new DynamoDBClient({
         credentials:{
             accessKeyId: access_key as string,

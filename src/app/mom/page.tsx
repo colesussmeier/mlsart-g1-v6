@@ -2,7 +2,7 @@
 
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { uploadProduct } from '../actions/uploadProduct';
 import { queryOrders } from '../actions/queryOrders';
 import { Amplify } from 'aws-amplify';
@@ -19,6 +19,7 @@ const Mom: React.FC<any> = (props) => {
     const [orders, setOrders] = useState<any[]>([]);
     const [products, setProducts] = useState<any[]>([]);
     const [trackingLink, setTrackingLink] = useState<string | null>(null);
+    const ref = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -42,55 +43,59 @@ const Mom: React.FC<any> = (props) => {
         <h1 className="font-bold underline text-lg pt-10">Add new Product</h1>
     </header>
 
-    <form className="flex flex-col items-center space-y-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action={uploadProduct}>
-    <div className="relative flex justify-center items-center">
-    {image ? (
-        <>
-            <img className="image-preview w-32 h-32 object-cover rounded" src={image} alt="" />
-        </>
-        ) : (
-            <div className="flex justify-center items-center">
-                <div className="w-32 h-32 bg-gray-200 rounded" />
-            </div>
-        )
-        }
-        <input
-        className="py-2 ml-3 rounded border border-gray-300"
-        type="file"
-        name="image"
-        accept="image/jpg"
-        onChange={(e) => {
-            if (e.target.files) {
-                setImage(URL.createObjectURL(e.target.files[0]));
+    <form ref={ref} className="flex flex-col items-center space-y-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" 
+        action={async (formData) => {
+          await uploadProduct(formData)
+          ref.current?.reset()
+        }}>
+        <div className="relative flex justify-center items-center">
+        {image ? (
+            <>
+                <img className="image-preview w-32 h-32 object-cover rounded" src={image} alt="" />
+            </>
+            ) : (
+                <div className="flex justify-center items-center">
+                    <div className="w-32 h-32 bg-gray-200 rounded" />
+                </div>
+            )
             }
-        }}
-    />
-    </div>
-    <label className="block">
-        <span className="text-gray-700">Title</span>
-        <input className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" type="text" name="title" placeholder="Type the title"/>
-    </label>
-    <label className="block">
-        <span className="text-gray-700">Size</span>
-        <input className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" type="text" name="size" placeholder="What's the size?"/>
-    </label>
-    <label className="flex flex-row">
-        <div>
-        <span className="text-gray-700">Price</span>
-        <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" name="price">
-            <option value="185">$185</option>
-            <option value="165">$165</option>
-        </select>
+            <input
+            className="py-2 ml-3 rounded border border-gray-300"
+            type="file"
+            name="image"
+            accept="image/jpg"
+            onChange={(e) => {
+                if (e.target.files) {
+                    setImage(URL.createObjectURL(e.target.files[0]));
+                }
+            }}
+        />
         </div>
-        <div className="ml-10">
-        <span className="text-gray-700">Collection</span>
-        <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" name="collection">
-            <option value="Landscape">Landscape</option>
-            <option value="Flower">Flower</option>
-        </select>
-        </div>
-    </label>
-    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Add Product</button>
+        <label className="block">
+            <span className="text-gray-700">Title</span>
+            <input className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" type="text" name="title" placeholder="Type the title"/>
+        </label>
+        <label className="block">
+            <span className="text-gray-700">Size</span>
+            <input className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" type="text" name="size" placeholder="What's the size?"/>
+        </label>
+        <label className="flex flex-row">
+            <div>
+            <span className="text-gray-700">Price</span>
+            <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" name="price">
+                <option value="185">$185</option>
+                <option value="165">$165</option>
+            </select>
+            </div>
+            <div className="ml-10">
+            <span className="text-gray-700">Collection</span>
+            <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" name="collection">
+                <option value="Landscape">Landscape</option>
+                <option value="Flower">Flower</option>
+            </select>
+            </div>
+        </label>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Add Product</button>
     </form>
 
 
