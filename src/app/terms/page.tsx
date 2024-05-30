@@ -28,7 +28,6 @@ const Terms = () => {
 
                 <h2 className="font-bold">4. Shipping and Delivery</h2>
                 <ul>
-                    <li>Shipping costs are calculated at checkout and added to your order total.</li>
                     <li>We ship paintings through the United States Postal Service (USPS).</li>
                     <li>Delivery times are estimates; we are not liable for delays out of our control.</li>
                     <li>Risk of loss passes to you upon delivery to the shipping carrier.</li> 

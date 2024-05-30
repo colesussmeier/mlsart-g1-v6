@@ -31,6 +31,7 @@ export default function Cart() {
                     );
                 })}
             </div>
+            <h2 className="text-2xl mt-5">Shipping (US only): $0</h2>
             <h2 className="text-2xl mt-5">Subtotal: ${total}</h2>
             <div className="flex flex-row justify-between w-3/4 m-10 lg:w-1/2 p-2">
             <button className="mt-5 px-2 py-2 text-lg bg-white text-black drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.5)] border-[0.1px] border-solid border-black rounded" onClick={clearCart}>Clear Cart</button>

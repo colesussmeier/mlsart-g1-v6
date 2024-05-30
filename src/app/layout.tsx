@@ -25,7 +25,8 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Hudson Valley Watercolors"/>
+        <meta name="description" content="Original Hudson Valley watercolors painted by Mary Lou Sussmeier"/>
+        <meta name="keywords" content="Watercolor, Hudson Valley, Artist, New York, Cold Spring"/>
       </Head>
       <Script async src="https://www.googletagmanager.com/gtag/js?id=G-Z95YLTM9MW"></Script>
       <Script id="google-analytics">
