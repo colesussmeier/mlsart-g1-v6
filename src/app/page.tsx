@@ -22,7 +22,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center justify-center h-screen mt-36">
           <div className="max-w-[85%]">
-          <h1 className="text-3xl lg:text-5xl text-center text-custom-blue pt-5">Local watercolor artist in New York's Beautiful Hudson Valley</h1>
+          <h1 className="text-3xl lg:text-5xl text-center text-custom-blue pt-5">Local watercolor artist in New York&apos;s Beautiful Hudson Valley</h1>
           </div>
         </div>
       </div>
