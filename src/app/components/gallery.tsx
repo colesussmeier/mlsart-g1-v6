@@ -17,7 +17,7 @@ function Gallery() {
     const { products } = useProductContext();
 
     const landscapeProducts = products.filter(product => product.collection === 'Landscape');
-    const flowerProducts = products.filter(product => product.collection === 'Flower');
+    const floralProducts = products.filter(product => product.collection === 'Floral');
 
     return (
         <>
@@ -52,9 +52,9 @@ function Gallery() {
                     ); 
                 })}
             </section>
-            {flowerProducts.length > 0 && <p className="text-2xl lg:text-3xl text-center pt-12 pb-10 lg:pb-16 text-custom-blue">Flower Collection</p>}
+            {floralProducts.length > 0 && <p className="text-2xl lg:text-3xl text-center pt-12 pb-10 lg:pb-16 text-custom-blue">Floral Collection</p>}
             <section className="w-full grid sm:grid-cols-3 grid-cols-1 px-3">
-                {flowerProducts.length > 0 && flowerProducts.map((product: Product) => {
+                {floralProducts.length > 0 && floralProducts.map((product: Product) => {
                     return (
                         <div key={product.title} className="flex justify-center items-center py-5">
                             {product.isPurchased ? (

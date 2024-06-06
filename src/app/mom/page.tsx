@@ -21,6 +21,19 @@ const Mom: React.FC<any> = (props) => {
     const [trackingLink, setTrackingLink] = useState<string | null>(null);
     const ref = useRef<HTMLFormElement>(null);
 
+    const validateForm = (formData: FormData) => {
+        const title = formData.get('title');
+        const size = formData.get('size');
+        const image = formData.get('image');
+    
+        if (!title || !size || !image) {
+            alert('Please fill out all fields');
+            return false;
+        }
+    
+        return true;
+    };
+
     useEffect(() => {
         const fetchOrders = async () => {
             const orders = await queryOrders();
@@ -45,8 +58,11 @@ const Mom: React.FC<any> = (props) => {
 
     <form ref={ref} className="flex flex-col items-center space-y-4 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" 
         action={async (formData) => {
-          await uploadProduct(formData)
-          ref.current?.reset()
+            if (!validateForm(formData)) {
+                return;
+            }
+            await uploadProduct(formData)
+            ref.current?.reset()
         }}>
         <div className="relative flex justify-center items-center">
         {image ? (
@@ -92,7 +108,7 @@ const Mom: React.FC<any> = (props) => {
             <span className="text-gray-700">Collection</span>
             <select className="mt-1 block w-full rounded-md border-gray-300 shadow-sm" name="collection">
                 <option value="Landscape">Landscape</option>
-                <option value="Flower">Flower</option>
+                <option value="Floral">Floral</option>
             </select>
             </div>
         </label>

@@ -4,6 +4,7 @@ import { useProductContext } from '../../context/products';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation'
 import { useCartContext } from '../../context/cart';
+import { queryProducts } from '../../actions/queryproducts';
 
 export default function Product({ params }: 
     { params: { id: string; }; }) {
@@ -11,12 +12,27 @@ export default function Product({ params }:
         const { products } = useProductContext();
         const { addToCart } = useCartContext();
         const decodedTitle = decodeURIComponent(params.id);
+        let title, price, size, collection;
+
+        async function fetchProducts() {
+            const result = await queryProducts();
+            const product = result.find((product: any) => {
+                return product.title === decodedTitle;
+            });
+            ({ title, price, size, collection } = product);
+        };
 
         const product = products.find((product: any) => {
             return product.title === decodedTitle;
         });
-    
-        const { title, price, size, collection } = product;
+        
+        try {
+            ({ title, price, size, collection } = product);
+        } catch (e) {
+            //in case of page refresh (context is lost)
+            fetchProducts();
+        }
+
         const url = "https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/" + decodedTitle + ".jpg";
     return (
         <div className="h-[100vh] pt-14">
