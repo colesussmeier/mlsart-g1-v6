@@ -24,6 +24,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
           metadata: SKs,
         },
         mode: 'payment',
+        allow_promotion_codes: true,
         success_url: `${req.headers.get('origin')}/success`,
         cancel_url: `${req.headers.get('origin')}/cancel`,
       });
