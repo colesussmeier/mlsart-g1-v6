@@ -36,7 +36,7 @@ Amplify uses a CDN to automatically distribute the website to a global network o
 A note on GraphQL and AWS Appsync: Amplify makes it easy to implement APIs through GraphQL, where the coordination of requests and responses is handled through Appsync. GraphQL provides a single endpoint for an API, which can simplify middleware when compared to the RESTful approach where multiple endpoints are required for different requests. At first, I was using GraphQL for my API, but I switched off of it for a few reasons:
 1.	Custom GraphQL resolvers appear inefficient for my use case. A resolver is used to implement custom business logic that needs to take place between a clients request and a sequence of required tasks that take place on the backend. A simple example: I need to write a custom query to my backend. Instead of having this handled directly in Appsync, I need to write a lambda function to perform the query. If I have several resolvers that don’t get used consistently, then they will only spin up when they are called. This takes extra time leading to a cold-start problem for every resolver. A solution could be to integrate this directly into Appsync, but this leads me to my next problem.
 2.	Custom resolvers for direct use within Appsync need to be written in a language called Velocity Template Language (VTL). Like me, you have probably never heard of this. It does not appear to be very common, so documentation is limited and I do not want to go through the trouble of learning something that I’ll likely never use again.
-3.	The better approach: Next.js server actions. I can skip configuring a GraphQL API completely by using a new technology that I am willing to bet becomes an industry standard.
+3.	The better approach: Next.js server actions. I can skip configuring a GraphQL API completely by using a new technology that I am willing to bet becomes an industry standard. More on this later.
 ## <div align="center"> Middleware </div>
 All middleware is implemented directly in my source code through the use of Next.js server actions. As the name implies, I can run code on the server that can talk directly to my backend. I can invoke a server action from the front-end the same way I would call a standard function in Typescript. This greatly simplifies the interaction between the client and my database, object storage, and Simple Email Service (SES).
 ## <div align="center"> Security </div>
@@ -58,9 +58,8 @@ The advantage to this design pattern is practically infinite scaling capabilitie
 
 ![Database Snippet](MLS_table.png)
 
-Above is a table showing the primary use cases that inform the database queries written in the server actions section of the codebase. Instead of doing a scan operation, which looks through the entire database everytime it is called, all data can be queried by knowing the PK and sorting with the SK.
+Above is a table showing the primary use cases that inform the database queries written in the server actions section of the codebase. Instead of doing a scan operation, which looks through the entire database every time it is called, all data can be queried by knowing the PK and sorting with the SK.
 
-Those familiar with key-value DB design may have spotted a problem. In a case where there are <i>many</i> orders (active or processed) or <i>many</i> products (active or inactive), there will be a “hot” partition because these are grouped by partition key. A hot partition is when one partition continues to grow, instead of having that data being spread across several partitions. This will eventually impact performance and could break the database. However, I do not expect this to become a problem. At least not for a while. In the case where the data needs to be split, adding in something like the month/ year combination (ie user123|id123|5/24) would get the job done, it would just need to be queried more carefully. As mentioned previously, I do not expect this to scale to that point and there is no sense in shooting down a bird with an F-22 fighter jet.
 
 
 ## <div align="center"> Sequence Diagram for Checkout Process </div>
@@ -88,7 +87,7 @@ A robots.txt file has been added to allow all bot traffic from web crawlers to a
 
 I am not using default build settings or caching settings (this is not contained in the source code). I have set the caching behavior to be more aggressive so that the CDN retains static files for longer, and I have performance mode enabled (Amplify setting) which decreases latency but also increases the time it takes to invalidate the cache when changes are pushed through from Github.
 
-I did not use any AI to write this readme, but I did use AI to write some of the code. I have strong opinions about the appropriate application of AI, and right now I think it is mainly only useful as a fancy autocomplete in VS Code. I do believe this will change with the development of agentic systems, but that is a topic for another day.
+I did not use any AI to write this readme, but I did use AI to write some of the code. I have strong opinions about the appropriate application of AI, and right now I think it is mainly only useful as a fancy autocomplete in VS Code. I do believe this will change with the development of agentic systems, but that&apos;s a topic for another day.
 
 ## <div align="center"> Wrap-up </div>
 This project took several months of trial and error, complete codebase rewrites (I started with React, GraphQL, and Stripe Elements, then switched to Next.js with server actions and Stripe redirect), and an extra healthy dose of time spent in AWS docs.

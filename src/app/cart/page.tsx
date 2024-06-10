@@ -16,14 +16,14 @@ export default function Cart() {
                 {cart.map((product: any) => {
                     const { SK, title, price, amount, image } = product;
                     return (
-                        <div key={SK} className="flex flex-row justify-between w-full p-5">
-                            <Image className="rounded mt-2 lg:mt-0 max-w-[150px] md:max-w-[375px] max-h-[110px] md:max-h-[275px]"
+                        <div key={SK} className="flex flex-row justify-between w-full p-4">
+                            <Image className="rounded mt-0 lg:mt-0 max-w-[150px] md:max-w-[375px] max-h-[110px] md:max-h-[275px]"
                                  src={image}
                                  alt={title}
                                  width={750}
                                  height={550}
                                  priority={true} />
-                            <div className="flex flex-col justify-center text-right max-w-32 mt-3 md:mt-0">
+                            <div className="flex flex-col justify-center text-right max-w-32">
                                 <h2 className="text-xl">{title}</h2>
                                 <p className="text-xl">${price}</p>
                             </div>

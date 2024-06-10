@@ -19,31 +19,13 @@ const About = () => {
         </p>
 
         <p>
-          Everyday life hits Mary Lou&apos;s eyes differently than other people. Most people would walk into a family
-          den strewn with wooden building blocks, books, and record album covers and think ugh, what a mess!
-          Not 10-year-old Mary Lou - she saw a house with multiple layouts and its own unique furniture, and set
-          out to build it, right then and there. Throughout middle school and high school, she was constantly
-          curating the spaces around her - arranging books on shelves, items on desks, glassware in the cabinets,
-          or furniture in the rooms - in ways that showcased their beauty and that invariably caught the eye.
-        </p>
-        </div>
-        </div>
-        <p>
-          This talent for transforming spaces led her to one of the preeminent colleges for interior design, the
+          Mary Lou&apos;s eye for color and design led her to one of the preeminent colleges for interior design, the
           Fashion Institute of Technology in NYC. It is there that Mary Lou polished her innate ability to find the
-          beauty of common spaces and lead to a successful and fulfilling career in interior design, working for
-          well known outfits such as Ethan Allen and The Melville Corporation, designing stores across the
-          country.
+          beauty of common spaces which led to a successful and fulfilling career where she designed stores across the
+          country for well known outfits such as Ethan Allen and The Melville Corporation.
         </p>
-        <p>
-          But Mary Lou&apos;s talents have never been limited to interior design. She and her engineer husband
-          designed and built their one-of-a-kind mountaintop post &amp; beam home that brings the outside in. The
-          house sits beside a beautiful pond, that they built themselves, and is surrounded by acres of trees
-          and miles of streams that frequently find their way into her paintings. Mary Lou, an avid gardener and
-          landscape enthusiast, created a breathtaking arrangement of plants and wild grasses around the pond.
-          The stone steps leading to her front door serve as the thrones for her beautifully arranged flowerpots.
-          “Painting with nature,” is how she describes it.
-        </p>
+        </div>
+        </div>
         <p className="pb-10">
           An art lover who is endlessly curious, in the past several years, Mary Lou has turned her talents to her
           true love - watercolor painting, in particular watercolors of the woods, streams, and ponds of her
