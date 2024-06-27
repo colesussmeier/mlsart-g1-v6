@@ -102,6 +102,7 @@ const Mom: React.FC<any> = (props) => {
                 <option value="185">$185</option>
                 <option value="165">$165</option>
                 <option value="135">$135</option>
+                <option value="250">$250</option>
             </select>
             </div>
             <div className="ml-10">

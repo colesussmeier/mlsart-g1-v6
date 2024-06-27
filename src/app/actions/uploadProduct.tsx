@@ -61,7 +61,9 @@ export async function uploadProduct(formData: FormData) {
         collection: formData.get('collection') as string,
         stripeId: price === 185 ? 'price_1PEHdpJyYHbUmOahmDlbyBBC' 
             : price === 165 ? 'price_1PEHeHJyYHbUmOahKZihfmm0' 
-            : price === 135 ? 'price_1POSZQJyYHbUmOah622LeniZ' : '',
+            : price === 135 ? 'price_1POSZQJyYHbUmOah622LeniZ' 
+            : price === 250 ? 'price_1PWLKUJyYHbUmOahH6SxYVoZ'
+            : '',
         createdAt: new Date().toISOString()
     };
     
