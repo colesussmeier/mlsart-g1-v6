@@ -25,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" href="/headshot.jpg" as="image" />
         <meta name="description" content="Original Hudson Valley watercolors painted by Mary Lou Sussmeier"/>
         <meta name="keywords" content="Watercolor, Hudson Valley, Artist, New York, Cold Spring"/>
       </Head>
