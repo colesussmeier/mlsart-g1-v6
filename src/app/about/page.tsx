@@ -9,7 +9,7 @@ const About = () => {
     
         <h1 className="text-3xl text-center my-5">About</h1>
         <div className="flex flex-col space-y-7 lg:flex-row items-center lg:space-x-24">
-        <Image src="/headshot.jpg" alt="Mary Lou Sussmeier" width={300} height={300} className="rounded" priority={true}/>
+        <Image src="/headshot.jpg" alt="Mary Lou Sussmeier" sizes="100vw" width={300} height={300} className="rounded" priority={true}/>
         <div className="space-y-7">
         <p>
           “If you could do anything you wanted, what would it be?” This was the question posed to Mary Lou, a
