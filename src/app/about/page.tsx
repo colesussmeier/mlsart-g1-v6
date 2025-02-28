@@ -33,8 +33,8 @@ const About = () => {
           Mary Lou&apos;s eyes return again and again to the colors around her - the shiny green of the pines, the silver
           of the streams, and the oranges, blues, and purples of the dawning and dusking skies. Besides color,
           what does she love most about watercolor painting? “It&apos;s the unexpected - I try a technique and it turns
-          out totally different than what I was planning but it opens my mind and leads me to open my mind even
-          more. With watercolors, I am constantly discovering and learning. What could be better than that?”
+          out totally different than what I was planning, but this allows me to open up my mind and improve my creativity.
+          With watercolors, I am constantly discovering and learning. What could be better than that?”
         </p>
       </div>
     </div>
