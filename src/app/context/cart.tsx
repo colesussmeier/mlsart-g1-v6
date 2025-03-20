@@ -27,11 +27,19 @@ export function CartProvider({ children }: {
     }, [cart]);
 
     const addToCart = (product: any) => {
-        const { SK, title, price, image, stripeId } = product;
+        const { SK, title, price, image, stripeId, version } = product;
         const existingProductIndex = cart.findIndex((p: any) => p.SK === SK);
         if (existingProductIndex == -1) {
-            const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId }];
-            setCart(cartItems);
+            const printStripeId = 'price_1R4XRyJyYHbUmOaheIkNFOWz';
+            if (version === 'print') {
+                const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId: printStripeId, isPrint: true}];
+                setCart(cartItems);
+            }
+            else {
+                const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId, isPrint: false}];
+                setCart(cartItems);
+            }
+            
         } else {
             console.log("duplicate item");
         }
@@ -44,14 +52,29 @@ export function CartProvider({ children }: {
         setCart([]);
     };
 
+    const removeFromCart = (SK: string) => {
+        const updatedCart = cart.filter((item: any) => item.SK !== SK);
+        setCart(updatedCart);
+    };
+
+    const updateQuantity = (SK: string, newAmount: number) => {
+        const updatedCart = cart.map((item: any) => {
+            if (item.SK === SK) {
+                return { ...item, amount: newAmount };
+            }
+            return item;
+        });
+        setCart(updatedCart);
+    };
+
     return (
         <CartContext.Provider
-          value={{ cart, total, addToCart, clearCart }}
+          value={{ cart, total, addToCart, clearCart, removeFromCart, updateQuantity }}
         >
           {children}
         </CartContext.Provider>
-      );
-    };
+    );
+};
 
 export function useCartContext() {
     return React.useContext(CartContext);

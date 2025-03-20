@@ -12,16 +12,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
         quantity: count,
       }));
 
-      const SKs = body.SKs;
+      const SK_metadata = body.SK_metadata;
+
+      console.log('SK_metadata', SK_metadata);
       
       const session = await stripe.checkout.sessions.create({
         billing_address_collection: 'auto',
-        shipping_address_collection: {
-          allowed_countries: ['US'],
-        },
         line_items: line_items,
         payment_intent_data: {
-          metadata: SKs,
+          metadata: {
+            SK_metadata: JSON.stringify(SK_metadata)
+          },
         },
         mode: 'payment',
         allow_promotion_codes: true,
