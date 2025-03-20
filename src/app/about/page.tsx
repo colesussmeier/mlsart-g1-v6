@@ -58,7 +58,7 @@ const About = () => {
                   <li>Independent consultant for custom home design and decor</li>
                 </FadeInView>
                 <FadeInView delay={1.0}>
-                  <li>A lifelong artist and a watercolor painter of over 20 years</li>
+                  <li>A lifelong artist and a watercolor painter of over 9 years</li>
                 </FadeInView>
               </ul>
             </div>
