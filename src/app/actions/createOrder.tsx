@@ -17,7 +17,9 @@ export async function createOrder(chargeDetails: any) {
     });
     const docClient = DynamoDBDocumentClient.from(dynamoClient);
 
-    const pids = Object.values(chargeDetails.pids);
+    const parsedPids = typeof chargeDetails.pids === 'string' 
+        ? JSON.parse(chargeDetails.pids) 
+        : chargeDetails.pids;
 
     const order = {
         PK: "Order|Purchased",
@@ -26,7 +28,7 @@ export async function createOrder(chargeDetails: any) {
         address: chargeDetails.address,
         total: chargeDetails.total,
         createdAt: new Date().toISOString(),
-        keys: pids
+        keys: parsedPids
     };
     
     const params = {
@@ -65,7 +67,10 @@ export async function createOrder(chargeDetails: any) {
         }
     }
 
-    pids.forEach((pid: any) => {
-        updateProducts(pid);
+    // only update product if it is not a print
+    Object.entries(parsedPids).forEach(([pid, value]) => {
+        if (value === 0) {
+            updateProducts(pid);
+        }
     });
 }

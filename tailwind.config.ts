@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         "custom-blue": "#0F829D",
+        "custom-bg-blue": "#eaf9fc"
       },
       screens: {
         'custom': '1000px',
