@@ -104,7 +104,7 @@ export default function Product({ params }: { params: { id: string } }) {
                             </div>
                         </div>
 
-                        <div className="pt-4 pr-1">
+                        <div className="pt-4 pr-1 pb-2">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-medium text-gray-900">Price</h2>
                                 <p className="text-xl font-semibold text-gray-900">

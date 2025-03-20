@@ -1,17 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import FadeInView from '../components/fadeInView';
 import Link from 'next/link';
 
 const About = () => {
   const urlPrefix = 'https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/About'
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      // Dispatch a custom scroll event with the container's scroll position
+      const scrollEvent = new CustomEvent('containerScroll', {
+        detail: { scrollTop: container.scrollTop }
+      });
+      window.dispatchEvent(scrollEvent);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="flex flex-col items-center scroll-smooth">
-      <div className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth">
-        <section className="min-h-screen w-full flex items-center justify-center p-4 snap-start">
-          <FadeInView className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-20 pb-[75px]">
+      <div ref={scrollContainerRef} className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+        <section className="min-h-screen w-full flex items-center justify-center p-6 snap-start">
+          <FadeInView className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-20">
             <div className="lg:w-1/2 space-y-4">
               <h2 className="text-2xl font-semibold text-custom-blue">
               &quot;If you could do anything you wanted, what would it be?&quot;
@@ -34,8 +52,8 @@ const About = () => {
         </section>
 
         <section className="min-h-screen w-full flex items-center justify-center bg-custom-bg-blue p-4 snap-start">
-          <FadeInView delay={0.2} className="max-w-4xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-5 lg:gap-20 pb-[75px]">
-            <div className="lg:w-1/2 p-8">
+          <FadeInView delay={0.2} className="max-w-4xl mx-auto flex flex-col-reverse lg:flex-row items-center lg:gap-20 pb-[75px] lg:pb-0">
+            <div className="lg:w-1/2 px-8 py-4">
               <Image
                 src="/headshot.jpg"
                 alt="Mary Lou painting"
@@ -47,7 +65,7 @@ const About = () => {
             </div>
             <div className="lg:w-1/2 space-y-4">
               <h2 className="text-2xl text-center font-bold mb-4 text-custom-blue">About Mary Lou</h2>
-              <ul className="space-y-4 list-disc pl-5 md:p-10 md:pl-15 lg:p-0 lg:pl-7">
+              <ul className="text-sm md:text-md space-y-4 list-disc pl-5 md:p-10 md:pl-15 lg:p-0 lg:pl-7">
                 <FadeInView delay={0.4}>
                   <li>Graduate of the Fashion Institute of Technology in NYC, specializing in interior design</li>
                 </FadeInView>
@@ -66,7 +84,7 @@ const About = () => {
         </section>
 
         <section className="min-h-screen w-full flex items-center justify-center p-4 snap-start">
-          <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-5 md:gap-20 pb-[75px]">
+          <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-5 md:gap-20 pb-[75px] lg:pb-0">
             <div className="lg:w-1/2 space-y-4">
               <h2 className="text-2xl text-center font-bold text-custom-blue">The Woods</h2>
               <p className="text-center">
@@ -75,7 +93,7 @@ const About = () => {
               </p>
             </div>
             <div className="lg:w-2/3">
-              <div className="grid grid-rows-3 gap-2 py-5">
+              <div className="grid grid-rows-3 gap-2 py-2">
                 <FadeInView delay={0.4}>
                   <div className="aspect-[4/5] w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
                     <Image
@@ -128,7 +146,7 @@ const About = () => {
         </section>
 
         <section className="min-h-screen w-full flex items-center justify-center bg-custom-bg-blue p-4 snap-start">
-          <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-5 md:gap-20 pb-[75px]">
+          <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-5 md:gap-20 pb-[75px] lg:pb-0">
           <div className="lg:w-2/3">
               <div className="grid grid-rows-3 gap-2">
                 <FadeInView delay={0.4}>
@@ -179,7 +197,7 @@ const About = () => {
                 </FadeInView>
               </div>
             </div>
-            <div className="lg:w-1/2 space-y-4 pb-4">
+            <div className="lg:w-1/2 space-y-4 pb-2">
               <h2 className="text-2xl text-center font-bold text-custom-blue">Streams & Ponds</h2>
               <p className="text-center">
                 Like a bee or a bird, Mary Lou&apos;s eyes are drawn to the silver of the streams
@@ -190,7 +208,7 @@ const About = () => {
         </section>
 
         <section className="min-h-screen w-full flex items-center justify-center p-4 snap-start">
-          <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-5 lg:gap-20 pb-[75px]">
+          <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-5 lg:gap-20 pb-[75px] lg:pb-0">
             <div className="lg:w-1/2 space-y-4 pb-4">
               <h2 className="text-2xl text-center font-bold text-custom-blue">Colors of the Sky</h2>
               <p className="text-center">
@@ -250,7 +268,7 @@ const About = () => {
         </section>
 
         <section className="min-h-screen w-full flex items-center justify-center bg-custom-bg-blue p-4 snap-start">
-          <FadeInView delay={0.3} className="max-w-4xl mx-auto flex flex-col items-center gap-8 text-center pb-[75px]">
+          <FadeInView delay={0.3} className="max-w-4xl mx-auto flex flex-col items-center gap-8 text-center pb-[75px] lg:pb-0">
             <h2 className="text-3xl font-bold text-custom-blue">Get in Touch</h2>
             <p className="max-w-2xl">
               Interested in commissioning a watercolor painting or purchasing an existing piece? 
