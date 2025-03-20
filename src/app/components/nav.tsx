@@ -1,13 +1,57 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
+    const pathname = usePathname();
+    const isAboutPage = pathname === '/about';
+
+    useEffect(() => {
+        if (!isAboutPage) {
+            setVisible(true);
+            return;
+        }
+
+        const handleScroll = () => {
+            const currentScrollPos = window.scrollY;
+            setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+            setPrevScrollPos(currentScrollPos);
+        };
+
+        const handleContainerScroll = (e: Event) => {
+            const customEvent = e as CustomEvent;
+            const currentScrollPos = customEvent.detail.scrollTop;
+            setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+            setPrevScrollPos(currentScrollPos);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('containerScroll', handleContainerScroll);
+        
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('containerScroll', handleContainerScroll);
+        };
+    }, [prevScrollPos, isAboutPage]);
+
+    // Reset visibility when leaving the about page
+    useEffect(() => {
+        if (!isAboutPage) {
+            setVisible(true);
+        }
+    }, [isAboutPage]);
+
+    const navClasses = isAboutPage
+        ? `fixed w-full transition-transform duration-300 z-50 ${visible ? 'translate-y-0' : '-translate-y-full'} flex items-center justify-between flex-wrap bg-white px-6 py-1 lg:py-6`
+        : 'flex items-center justify-between flex-wrap bg-white px-6 py-1 lg:py-6';
 
     return (
-        <nav className="flex items-center justify-between flex-wrap bg-white px-6 py-1 lg:py-6">
+        <nav className={navClasses}>
             <p className="text-xl text-custom-blue max-w-44 md:text-2xl lg:max-w-xl text-center">Mary Lou Sussmeier <span className="font-medium">Watercolors</span></p>
             <div className="block lg:hidden">
                 <button onClick={() => setIsOpen(!isOpen)} className="flex items-center px-3 py-2 border rounded border-custom-blue hover:text-gray-500 hover:border-gray-500">
