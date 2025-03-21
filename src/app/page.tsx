@@ -22,7 +22,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center h-screen mt-36">
           <div className="max-w-[85%]">
             <FadeInView>
-              <h1 className="text-4xl lg:text-5xl text-center text-custom-blue pb-12">
+              <h1 className="text-2xl lg:text-5xl text-center text-custom-blue pb-12">
                 Local watercolor artist in New York&apos;s Beautiful Hudson Valley
               </h1>
             </FadeInView>
