@@ -34,6 +34,7 @@ export default function Cart() {
                                                 fill
                                                 className="object-cover rounded-md"
                                                 priority={true}
+                                                sizes="10vw"
                                             />
                                         </div>
                                         <div className="ml-6 flex-1">
