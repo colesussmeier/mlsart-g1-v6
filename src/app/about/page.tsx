@@ -29,8 +29,8 @@ const About = () => {
     <div className="flex flex-col items-center scroll-smooth">
       <div ref={scrollContainerRef} className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth">
         <section className="min-h-screen w-full flex items-center justify-center p-6 snap-start">
-          <FadeInView className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-20">
-            <div className="lg:w-1/2 space-y-4">
+          <FadeInView className="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
+            <div className="lg:w-1/2 space-y-2 pt-10 lg:pt-0">
               <h2 className="text-2xl font-semibold text-custom-blue">
               &quot;If you could do anything you wanted, what would it be?&quot;
               </h2>
@@ -95,47 +95,47 @@ const About = () => {
             <div className="lg:w-2/3">
               <div className="grid grid-rows-3 gap-2 py-2">
                 <FadeInView delay={0.4}>
-                  <div className="aspect-[4/5] w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
+                  <div className="w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
                     <Image
                       src={urlPrefix + '/Woods/woods1.PNG'}
                       alt="Woods watercolor 1"
-                      width={400}
-                      height={500}
+                      width={256}
+                      height={320}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </FadeInView>
-                <div className="grid grid-cols-2 gap-2 w-full my-auto">
+                <div className="grid grid-cols-2 gap-4 w-full my-auto">
                   <FadeInView delay={0.6}>
-                    <div className="aspect-[5/4] w-full rounded-lg shadow-lg overflow-hidden">
+                    <div className="w-full rounded-lg shadow-lg overflow-hidden">
                       <Image
                         src={urlPrefix + '/Woods/woods2.PNG'}
                         alt="Woods watercolor 2"
-                        width={500}
-                        height={400}
+                        width={320}
+                        height={256}
                         className="w-full h-full object-cover"
                       />
                     </div>
                   </FadeInView>
                   <FadeInView delay={1}>
-                    <div className="aspect-[5/4] w-full rounded-lg shadow-lg overflow-hidden">
+                    <div className="w-full rounded-lg shadow-lg overflow-hidden">
                       <Image
                         src={urlPrefix + '/Woods/woods4.PNG'}
                         alt="Woods watercolor 4"
-                        width={500}
-                        height={400}
+                        width={320}
+                        height={256}
                         className="w-full h-full object-cover"
                       />
                     </div>
                   </FadeInView>
                 </div>
                 <FadeInView delay={0.8}>
-                  <div className="aspect-[4/5] w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
+                  <div className="w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
                     <Image
                       src={urlPrefix + '/Woods/woods3.PNG'}
                       alt="Woods watercolor 3"
-                      width={400}
-                      height={500}
+                      width={256}
+                      height={320}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -150,24 +150,24 @@ const About = () => {
           <div className="lg:w-2/3">
               <div className="grid grid-rows-3 gap-2">
                 <FadeInView delay={0.4}>
-                  <div className="aspect-[4/5] w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
+                  <div className="w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
                     <Image
                       src={urlPrefix + '/Streams/stream1.PNG'}
                       alt="Streams watercolor 1"
-                      width={400}
-                      height={500}
+                      width={256}
+                      height={320}
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </FadeInView>
-                <div className="grid grid-cols-2 gap-2 w-full my-auto">
+                <div className="grid grid-cols-2 gap-4 w-full my-auto">
                   <FadeInView delay={1}>
                     <div className="aspect-[5/4] w-full rounded-lg shadow-lg overflow-hidden">
                       <Image
                         src={urlPrefix + '/Streams/stream2.PNG'}
                         alt="Streams watercolor 2"
-                        width={500}
-                        height={400}
+                        width={320}
+                        height={256}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -177,20 +177,20 @@ const About = () => {
                       <Image
                         src={urlPrefix + '/Streams/stream4.PNG'}
                         alt="Streams watercolor 4"
-                        width={500}
-                        height={400}
+                        width={320}
+                        height={256}
                         className="w-full h-full object-cover"
                       />
                     </div>
                   </FadeInView>
                 </div>
                 <FadeInView delay={0.8}>
-                  <div className="aspect-[4/5] w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
+                  <div className="w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
                     <Image
                       src={urlPrefix + '/Streams/stream3.PNG'}
                       alt="Streams watercolor 3"
-                      width={400}
-                      height={500}
+                      width={256}
+                      height={320}
                       className="w-full h-full object-cover"
                     />
                   </div>
