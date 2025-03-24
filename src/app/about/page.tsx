@@ -92,7 +92,7 @@ const About = () => {
                 Cold Spring, New York, a river town in the magnificent Hudson Valley.
               </p>
             </div>
-            <div className="lg:w-2/3">
+            <div className="lg:w-1/2">
               <div className="grid grid-rows-3 gap-2 py-2">
                 <FadeInView delay={0.4}>
                   <div className="w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
@@ -147,7 +147,7 @@ const About = () => {
 
         <section className="min-h-screen w-full flex items-center justify-center bg-custom-bg-blue p-4 snap-start">
           <FadeInView delay={0.3} className="max-w-6xl mx-auto flex flex-col-reverse md:flex-row items-center gap-5 md:gap-20 pb-[75px] lg:pb-0">
-          <div className="lg:w-2/3">
+          <div className="lg:w-1/2">
               <div className="grid grid-rows-3 gap-2">
                 <FadeInView delay={0.4}>
                   <div className="w-1/3 rounded-lg shadow-lg overflow-hidden mx-auto">
