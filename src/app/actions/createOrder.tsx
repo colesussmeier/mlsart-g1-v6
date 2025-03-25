@@ -17,9 +17,7 @@ export async function createOrder(chargeDetails: any) {
     });
     const docClient = DynamoDBDocumentClient.from(dynamoClient);
 
-    const parsedPids = typeof chargeDetails.pids === 'string' 
-        ? JSON.parse(chargeDetails.pids) 
-        : chargeDetails.pids;
+    const parsedPids = JSON.parse(chargeDetails.pids).SK_metadata;
 
     const order = {
         PK: "Order|Purchased",
