@@ -43,6 +43,8 @@ const Mom: React.FC<any> = (props) => {
         fetchOrders();
     }, []);
 
+    //{ "SK_metadata" : { "S" : "{\"Pid|1e4b7f60-aa2b-4662-87e4-5db69e25dacf\":1}" } }
+
     const fetchProducts = async (pid: string, numPrints: number) => {
         const product = await getProduct(pid);
         setProducts(prevProducts => [...prevProducts, { ...product, numPrints }]);
