@@ -19,6 +19,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const session = await stripe.checkout.sessions.create({
         billing_address_collection: 'auto',
         line_items: line_items,
+        shipping_address_collection: {
+          allowed_countries: ['US', 'CA'],
+        },
         payment_intent_data: {
           metadata: {
             SK_metadata: JSON.stringify(SK_metadata)
