@@ -29,6 +29,7 @@ const createSendCustomerEmailCommand = (toAddress, receipt) => {
           Data: `
             <h2>Thank you for your order!</h2>
             <p>We're currently processing your order and will email you once your order has been shipped.</p>
+            <p>A note on prints: We use a third party to custom print your order on paper made specifically for watercolor paintings. It usually takes about a week to have these orders shipped out.</p>
             <p>You can view your online receipt <a href="${receipt}">here</a>.</p>
           `,
         },
@@ -38,6 +39,8 @@ const createSendCustomerEmailCommand = (toAddress, receipt) => {
             Thank you for your order! 
 
             We're currently processing your order and will email you once your order has been shipped.
+
+            A note on prints: We use a third party to custom print your order on paper made specifically for watercolor paintings. It usually takes about a week to have these orders shipped out.
 
             You can view your receipt at the following link: ${receipt}
         `,
