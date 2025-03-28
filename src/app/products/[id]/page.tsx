@@ -34,7 +34,7 @@ export default function Product({ params }: { params: { id: string } }) {
     }
 
     const url = "https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/" + decodedTitle + ".jpg";
-    const printPrice = 30;
+    const printPrice = 40;
 
     const handleAddToCart = () => {
         const productToAdd = {
