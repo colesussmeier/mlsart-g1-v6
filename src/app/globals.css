@@ -5,7 +5,7 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
-
+  --vh: 100vh;
 }
 
 body {
@@ -16,5 +16,8 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .h-dvh {
+    height: calc(var(--vh, 1vh) * 100);
   }
 }

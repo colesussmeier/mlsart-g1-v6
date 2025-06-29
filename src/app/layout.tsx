@@ -10,6 +10,7 @@ import Script from 'next/script';
 import Head from 'next/head';
 import { ProductProvider } from './context/products';
 import { CartProvider } from "./context/cart";
+import React, { useEffect } from "react";
 
 Amplify.configure(config, { ssr: true })
 
@@ -21,6 +22,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    };
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
+
   return (
     <html lang="en">
       <Head>
