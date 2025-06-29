@@ -5,7 +5,7 @@ import React from 'react';
 import FadeInView from "./components/fadeInView";
 import GallerySection from "./components/GallerySection";
 import { Metadata } from "next";
-import InstagramVhFixer from "./components/InstagramVhFixer";
+import VhFixer from "./components/VhFixer";
 
 export const metadata: Metadata = {
   title: 'MLS Watercolors',
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <InstagramVhFixer />
-      <div className="flex flex-col items-center justify-between h-screen relative">
-        <div className="absolute inset-0 z-[-1] insta-fix-height">
+      <VhFixer />
+      <div className="flex flex-col items-center justify-between relative insta-fix-height">
+        <div className="absolute inset-0 z-[-1]">
           <Image fill src="/heroCover1.jpg" alt="background" quality={100} priority={true}/>
         </div>
         <div className="flex flex-col items-center justify-center h-screen mt-36">
