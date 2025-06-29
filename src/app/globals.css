@@ -18,3 +18,7 @@ body {
     text-wrap: balance;
   }
 }
+
+html.instagram-inapp .insta-fix-height {
+  height: calc(var(--app-vh, 1vh) * 100);
+}
