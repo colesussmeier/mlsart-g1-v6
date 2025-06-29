@@ -18,7 +18,3 @@ body {
     text-wrap: balance;
   }
 }
-
-.insta-fix-height {
-  height: calc(var(--vh, 1vh) * 100);
-}
