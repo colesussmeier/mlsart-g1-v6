@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center justify-between h-screen relative">
+      <div className="flex flex-col items-center justify-between h-dvh relative">
         <div className="absolute inset-0 z-[-1]">
           <Image fill src="/heroCover1.jpg" alt="background" quality={100} priority={true}/>
         </div>
-        <div className="flex flex-col items-center justify-center h-screen mt-36">
+        <div className="flex flex-col items-center justify-center h-dvh mt-36">
           <div className="max-w-[85%]">
             <FadeInView>
               <h1 className="text-2xl lg:text-5xl text-center text-custom-blue pb-12">
