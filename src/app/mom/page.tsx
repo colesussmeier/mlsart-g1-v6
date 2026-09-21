@@ -22,11 +22,13 @@ const Mom: React.FC<any> = (props) => {
     const ref = useRef<HTMLFormElement>(null);
 
     const validateForm = (formData: FormData) => {
-        const title = formData.get('title');
-        const size = formData.get('size');
-        const image = formData.get('image');
+        const title = (formData.get('title') as string ?? '').trim();
+        const size = (formData.get('size') as string ?? '').trim();
+        const price = formData.get('price');
+        const collection = formData.get('collection');
+        const image = formData.get('image') as File;
     
-        if (!title || !size || !image) {
+        if (!title || !size || !price || !collection || !image || image.size === 0) {
             alert('Please fill out all fields');
             return false;
         }
@@ -63,8 +65,15 @@ const Mom: React.FC<any> = (props) => {
                     if (!validateForm(formData)) {
                         return;
                     }
-                    await uploadProduct(formData)
-                    ref.current?.reset()
+                    try {
+                        await uploadProduct(formData);
+                    } catch (err) {
+                        alert(`Upload failed, the product was not added: ${(err as Error).message}`);
+                        return;
+                    }
+                    ref.current?.reset();
+                    setImage(null);
+                    alert('Product added');
                 }}>
                 <div className="relative flex justify-center items-center">
                 {image ? (
@@ -81,7 +90,7 @@ const Mom: React.FC<any> = (props) => {
                     className="py-2 ml-3 rounded border border-gray-300"
                     type="file"
                     name="image"
-                    accept="image/jpg"
+                    accept="image/jpeg,image/png,image/webp"
                     onChange={(e) => {
                         if (e.target.files) {
                             setImage(URL.createObjectURL(e.target.files[0]));
