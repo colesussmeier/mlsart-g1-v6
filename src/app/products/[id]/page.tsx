@@ -4,7 +4,6 @@ import { useProductContext } from '../../context/products';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useCartContext } from '../../context/cart';
-import { queryProducts } from '../../actions/queryproducts';
 import { useState } from 'react';
 
 export default function Product({ params }: { params: { id: string } }) {
@@ -13,28 +12,18 @@ export default function Product({ params }: { params: { id: string } }) {
     const { addToCart } = useCartContext();
     const decodedTitle = decodeURIComponent(params.id);
     const [selectedVersion, setSelectedVersion] = useState<'original' | 'print'>('original');
-    let title, price, size, collection;
 
-    async function fetchProducts() {
-        const result = await queryProducts();
-        const product = result.find((product: any) => {
-            return product.title === decodedTitle;
-        });
-        ({ title, price, size, collection } = product);
-    }
-
-    const product = products.find((product: any) => {
+    const product = products?.find((product: any) => {
         return product.title === decodedTitle;
     });
 
-    try {
-        ({ title, price, size, collection } = product);
-    } catch (e) {
-        fetchProducts();
+    const printPrice = 40;
+
+    if (!product) {
+        return <div className="max-w-7xl mx-auto px-4 lg:mt-10 sm:px-6 lg:px-8 py-8 min-h-[100vh]" />;
     }
 
-    const url = "https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/" + decodedTitle + ".jpg";
-    const printPrice = 40;
+    const { title, price, size, collection, image } = product;
 
     const handleAddToCart = () => {
         const productToAdd = {
@@ -53,7 +42,7 @@ export default function Product({ params }: { params: { id: string } }) {
                 <div>
                     <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
                         <Image
-                            src={url}
+                            src={image}
                             alt={title}
                             width={750}
                             height={550}
