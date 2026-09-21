@@ -2,7 +2,7 @@
 
 import { useProductContext } from '../../context/products';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { useCartContext } from '../../context/cart';
 import { useState } from 'react';
 
@@ -21,6 +21,11 @@ export default function Product({ params }: { params: { id: string } }) {
 
     if (!product) {
         return <div className="max-w-7xl mx-auto px-4 lg:mt-10 sm:px-6 lg:px-8 py-8 min-h-[100vh]" />;
+    }
+
+    // A sold original takes the print with it, so the whole page is off limits.
+    if (product.isPurchased) {
+        notFound();
     }
 
     const { title, price, size, collection, image } = product;
