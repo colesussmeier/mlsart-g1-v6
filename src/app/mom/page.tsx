@@ -18,7 +18,8 @@ const Mom: React.FC<any> = (props) => {
     const [image, setImage] = useState<string | null>(null);
     const [orders, setOrders] = useState<any[]>([]);
     const [products, setProducts] = useState<any[]>([]);
-    const [trackingLink, setTrackingLink] = useState<string | null>(null);
+    // Keyed by order, so pasting a link against one order cannot email it to another.
+    const [trackingLinks, setTrackingLinks] = useState<Record<string, string>>({});
     const ref = useRef<HTMLFormElement>(null);
 
     const validateForm = (formData: FormData) => {
@@ -177,10 +178,28 @@ const Mom: React.FC<any> = (props) => {
                         </td>
                         <td className="border px-4 py-2">
                             <input type="text" name="tracking" placeholder="Paste tracking link here" 
-                                className="border mb-2" onChange={(e) => setTrackingLink(e.target.value)}/>
-                            <button onClick={() => {
-                                sendConfirmationEmail(splitSK[0], trackingLink);
-                                updateOrder(order.SK);
+                                className="border mb-2" value={trackingLinks[order.SK] ?? ''}
+                                onChange={(e) => setTrackingLinks(current => ({ ...current, [order.SK]: e.target.value }))}/>
+                            <button onClick={async () => {
+                                const trackingLink = (trackingLinks[order.SK] ?? '').trim();
+                                if (!trackingLink) {
+                                    alert('Paste a tracking link before sending the confirmation');
+                                    return;
+                                }
+                                // Marking the order shipped first means a failure here can be
+                                // retried without emailing the customer a second time.
+                                try {
+                                    await updateOrder(order.SK);
+                                } catch (err) {
+                                    alert(`The order was not marked shipped and nothing was emailed: ${(err as Error).message}`);
+                                    return;
+                                }
+                                setOrders(current => current.filter(o => o.SK !== order.SK));
+                                try {
+                                    await sendConfirmationEmail(splitSK[0], trackingLink);
+                                } catch (err) {
+                                    alert(`The order was marked shipped but the email failed, please email ${splitSK[0]} directly: ${(err as Error).message}`);
+                                }
                             }}
                                 type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                 Send shipping confirmation

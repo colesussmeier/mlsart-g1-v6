@@ -10,6 +10,7 @@ export async function updateOrder(SK: string) {
     const table_name = process.env.DYNAMO_TABLE;
 
     const dynamoClient = new DynamoDBClient({
+        region: "us-east-1",
         credentials:{
             accessKeyId: access_key as string,
             secretAccessKey: secret_access_key as string
@@ -17,55 +18,36 @@ export async function updateOrder(SK: string) {
     });
     const docClient = DynamoDBDocumentClient.from(dynamoClient);
 
-    // Fetch the existing item
-    const getParams = {
-        TableName: table_name,
-        Key: {
-            PK: "Order|Purchased",
-            SK: SK
-        }
+    const key = {
+        PK: "Order|Purchased",
+        SK: SK
     };
 
-    let item;
-
-    try {
-        const data = await docClient.send(new GetCommand(getParams));
-        item = data.Item;
-        console.log("Fetched order", item);
-    } catch (err) {
-        console.log("Error", err);
-    }
-
-    // Delete the existing item
-    const deleteParams = {
+    const existing = await docClient.send(new GetCommand({
         TableName: table_name,
-        Key: {
-            PK: "Order|Purchased",
-            SK: SK
-        }
-    };
+        Key: key
+    }));
 
-    try {
-        await docClient.send(new DeleteCommand(deleteParams));
-        console.log("Deleted order");
-    } catch (err) {
-        console.log("Error", err);
+    if (!existing.Item) {
+        throw new Error(`No outstanding order found for ${SK}`);
     }
 
-    // Insert a new item with the stored details
-    const putParams = {
+    // The shipped copy is written before the purchased one is removed. Failing midway
+    // leaves the order listed in both places, which the next attempt cleans up; doing
+    // it the other way round loses the order entirely.
+    await docClient.send(new PutCommand({
         TableName: table_name,
         Item: {
-            ...item,
+            ...existing.Item,
             PK: "Order|Shipped"
         }
-    };
+    }));
 
-    try {
-        const data = await docClient.send(new PutCommand(putParams));
-        console.log("Inserted order", data);
-        revalidatePath('/mom');
-    } catch (err) {
-        console.log("Error", err);
-    }
+    await docClient.send(new DeleteCommand({
+        TableName: table_name,
+        Key: key
+    }));
+
+    console.log("Shipped order", SK);
+    revalidatePath('/mom');
 }
