@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from 'react';
 import FadeInView from "./components/fadeInView";
 import GallerySection from "./components/GallerySection";
+import HomeScrollMemory from "./components/homeScrollMemory";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function Home() {
         </div>
       </div>
       <GallerySection />
+      <HomeScrollMemory />
     </>
   );
 }
