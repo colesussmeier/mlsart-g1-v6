@@ -2,12 +2,13 @@
 
 import { useProductContext } from '../../context/products';
 import Image from 'next/image';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound, useParams, useRouter } from 'next/navigation';
 import { useCartContext } from '../../context/cart';
 import { useState } from 'react';
 
-export default function Product({ params }: { params: { id: string } }) {
+export default function Product() {
     const router = useRouter();
+    const params = useParams<{ id: string }>();
     const { products } = useProductContext();
     const { addToCart } = useCartContext();
     const decodedTitle = decodeURIComponent(params.id);

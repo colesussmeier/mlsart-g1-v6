@@ -3,7 +3,7 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 import { asAdmin, FriendlyError } from "./adminAuth";
 import type { AdminResult } from "./adminTypes";
 import { COLLECTIONS, STRIPE_PRICE_IDS } from "./productOptions";
@@ -100,7 +100,7 @@ export async function uploadProduct(idToken: string, formData: FormData): Promis
 
         const product = {
             PK: "Product|Active",
-            SK: "Pid|" + uuidv4(),
+            SK: "Pid|" + randomUUID(),
             title: title,
             price: price,
             image: `https://${BUCKET}.s3.us-east-1.amazonaws.com/${encodeURIComponent(key)}`,
