@@ -1,5 +1,5 @@
-"use server";
-
+// Deliberately not a "use server" module: every export of one is callable by anyone,
+// which would let strangers send mail from the shop's address.
 import { SESClient } from "@aws-sdk/client-ses";
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 
@@ -60,19 +60,26 @@ const sendCustomerEmail = async (toAddress, receipt) => {
     toAddress,
     receipt,
   );
-  
-  sendAdminEmail(toAddress);
+
+  let result;
 
   try {
-    return await sesClient.send(sendEmailCommand);
+    result = await sesClient.send(sendEmailCommand);
   } catch (caught) {
     if (caught instanceof Error && caught.name === "MessageRejected") {
       /** @type { import('@aws-sdk/client-ses').MessageRejected} */
       const messageRejectedError = caught;
-      return messageRejectedError;
+      result = messageRejectedError;
+    } else {
+      throw caught;
     }
-    throw caught;
   }
+
+  // Awaited so the notification cannot be cut short when the request that triggered
+  // it returns. A rejected customer address still has to reach the admins.
+  await sendAdminEmail(toAddress);
+
+  return result;
 };
 
 export { sendCustomerEmail };

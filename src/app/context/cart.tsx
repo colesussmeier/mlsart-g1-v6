@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, createContext } from "react";
+import { useProductContext } from "./products";
 
 const CartContext = createContext<any>({
     products: [],
@@ -10,12 +11,29 @@ export function CartProvider({ children }: {
     children:React.ReactNode;
     }) {
 
+    const { products } = useProductContext();
+
     const [cart, setCart] = useState(() => {
         const localData = typeof window !== 'undefined' ? localStorage.getItem('cart') : null;
         return localData ? JSON.parse(localData) : [];
     });
 
     const [total, setTotal] = useState(0);
+
+    // A cart survives in localStorage indefinitely, so anything that sold or was
+    // delisted in the meantime has to go before it reaches checkout.
+    useEffect(() => {
+        if (!products?.length) {
+            return;
+        }
+        setCart((currentCart: any[]) => {
+            const available = currentCart.filter(({ SK }) => {
+                const product = products.find((p: any) => p.SK === SK);
+                return product && !product.isPurchased;
+            });
+            return available.length === currentCart.length ? currentCart : available;
+        });
+    }, [products]);
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
