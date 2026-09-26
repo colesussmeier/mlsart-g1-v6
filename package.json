@@ -16,6 +16,7 @@
     "@aws-sdk/lib-dynamodb": "^3.556.0",
     "@stripe/stripe-js": "^3.3.0",
     "aws-amplify": "^6.10.0",
+    "aws-jwt-verify": "^5.2.1",
     "aws-sdk": "^2.1692.0",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.1.7",

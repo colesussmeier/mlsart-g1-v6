@@ -1,5 +1,5 @@
-"use server";
-
+// Deliberately not a "use server" module: every export of one is callable by anyone,
+// which would let strangers send mail from the shop's address.
 import { SESClient } from "@aws-sdk/client-ses";
 import { SendEmailCommand } from "@aws-sdk/client-ses";
 
