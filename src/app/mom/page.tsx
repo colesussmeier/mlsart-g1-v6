@@ -7,12 +7,13 @@ import { Amplify } from 'aws-amplify';
 import config from '../../amplifyconfiguration.json';
 import OrdersTab from './OrdersTab';
 import AddPaintingTab from './AddPaintingTab';
+import PaintingsTab from './PaintingsTab';
 import { useOrders } from './useOrders';
 import { Button } from './ui';
 
 Amplify.configure(config);
 
-type Tab = 'orders' | 'add';
+type Tab = 'orders' | 'paintings' | 'add';
 
 function Mom({ signOut, user }: WithAuthenticatorProps) {
     const [tab, setTab] = useState<Tab>('orders');
@@ -39,14 +40,20 @@ function Mom({ signOut, user }: WithAuthenticatorProps) {
                             <span className="ml-2 rounded-full bg-green-700 px-2.5 py-0.5 text-base text-white">{waiting}</span>
                         ) : null}
                     </TabButton>
+                    <TabButton active={tab === 'paintings'} onClick={() => setTab('paintings')}>
+                        Paintings
+                    </TabButton>
                     <TabButton active={tab === 'add'} onClick={() => setTab('add')}>
                         Add a painting
                     </TabButton>
                 </div>
 
-                {/* Both stay mounted so switching tabs never loses a half-filled form or tracking link. */}
+                {/* The tabs stay mounted so switching tabs never loses a half-filled form or tracking link. */}
                 <section role="tabpanel" hidden={tab !== 'orders'}>
                     <OrdersTab state={orders} />
+                </section>
+                <section role="tabpanel" hidden={tab !== 'paintings'}>
+                    <PaintingsTab active={tab === 'paintings'} />
                 </section>
                 <section role="tabpanel" hidden={tab !== 'add'}>
                     <AddPaintingTab />
