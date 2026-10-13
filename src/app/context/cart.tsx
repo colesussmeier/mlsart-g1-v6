@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, createContext } from "react";
 import { useProductContext } from "./products";
+import { PRINT_STRIPE_PRICE_ID } from "../actions/productOptions";
 
 const CartContext = createContext<any>({
     products: [],
@@ -48,9 +49,8 @@ export function CartProvider({ children }: {
         const { SK, title, price, image, stripeId, version } = product;
         const existingProductIndex = cart.findIndex((p: any) => p.SK === SK);
         if (existingProductIndex == -1) {
-            const printStripeId = 'price_1R7iGjJyYHbUmOahLxpIyNrl';
             if (version === 'print') {
-                const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId: printStripeId, isPrint: true}];
+                const cartItems = [...cart, { SK, title, image, price, amount: 1, stripeId: PRINT_STRIPE_PRICE_ID, isPrint: true}];
                 setCart(cartItems);
             }
             else {

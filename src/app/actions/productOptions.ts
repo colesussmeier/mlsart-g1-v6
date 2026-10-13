@@ -8,4 +8,6 @@ export const STRIPE_PRICE_IDS: Record<number, string> = {
     250: 'price_1PWLKUJyYHbUmOahH6SxYVoZ',
 };
 
+export const PRINT_STRIPE_PRICE_ID = 'price_1R7iGjJyYHbUmOahLxpIyNrl';
+
 export const PRICES = Object.keys(STRIPE_PRICE_IDS).map(Number).sort((a, b) => a - b);
