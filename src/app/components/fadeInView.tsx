@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface FadeInViewProps {
   children: React.ReactNode;
@@ -9,23 +8,41 @@ interface FadeInViewProps {
   className?: string; // Add className prop
 }
 
+let observer: IntersectionObserver | undefined;
+
+function getObserver() {
+  observer ??= new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).dataset.inView = '';
+        observer!.unobserve(entry.target);
+      }
+    }
+  }, { rootMargin: '0px 0px -100px 0px' });
+  return observer;
+}
+
+// The fade is a plain CSS transition on opacity and transform so it runs on the
+// compositor; a JS-driven animation stutters whenever the main thread is busy
+// scrolling or decoding images, which is most noticeable in Firefox.
 export default function FadeInView({ children, delay = 0, className = '' }: FadeInViewProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    const io = getObserver();
+    io.observe(element);
+    return () => io.unobserve(element);
+  }, []);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      className={`w-full ${className}`}
-      initial={{ opacity: 0, y: 10 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-      transition={{
-        duration: .8,
-        delay: delay,
-        ease: "easeOut"
-      }}
+      className={`fade-in-view w-full ${className}`}
+      style={{ transitionDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

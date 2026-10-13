@@ -21,3 +21,16 @@ body {
     height: calc(var(--vh, 1vh) * 100);
   }
 }
+
+.fade-in-view {
+  opacity: 0;
+  transform: translateY(4px);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0, 0, 0.58, 1);
+}
+
+.fade-in-view[data-in-view] {
+  opacity: 1;
+  transform: none;
+}
