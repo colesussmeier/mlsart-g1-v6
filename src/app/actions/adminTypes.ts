@@ -20,6 +20,16 @@ export type OrderAddress = {
     country?: string | null;
 };
 
+export type Painting = {
+    pid: string;
+    title: string;
+    image: string;
+    size: string;
+    collection: string;
+    createdAt: string;
+    sold: boolean;
+};
+
 export type OutstandingOrder = {
     id: string;
     email: string;
