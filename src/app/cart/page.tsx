@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FiTrash2 } from "react-icons/fi";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import CheckoutButton from "../components/checkoutButton";
+import { CART_THUMBNAIL_SIZES } from "../components/cartThumbnail";
 
 export default function Cart() {
     const { cart, total, clearCart, updateQuantity, removeFromCart } = useCartContext();
@@ -27,14 +28,14 @@ export default function Cart() {
                                 const { SK, title, price, amount, image, isPrint } = product;
                                 return (
                                     <div key={SK} className="flex items-center p-[1.6rem] border-b border-gray-200 last:border-b-0">
-                                        <div className="flex-shrink-0 w-24 h-24 relative">
+                                        <div className="flex-shrink-0 w-24 sm:w-32 aspect-[4/3] relative">
                                             <Image
                                                 src={image}
                                                 alt={title}
                                                 fill
                                                 className="object-cover rounded-md"
                                                 priority={true}
-                                                sizes={"10vw"}
+                                                sizes={CART_THUMBNAIL_SIZES}
                                             />
                                         </div>
                                         <div className="ml-6 flex-1">

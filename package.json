@@ -19,7 +19,6 @@
     "aws-amplify": "^6.22.0",
     "aws-jwt-verify": "^5.2.1",
     "dotenv": "^16.6.1",
-    "framer-motion": "^11.18.2",
     "next": "^15.5.26",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { notFound, useParams, useRouter } from 'next/navigation';
 import { useCartContext } from '../../context/cart';
 import { useState } from 'react';
+import { preloadCartThumbnail } from '../../components/cartThumbnail';
 
 export default function Product() {
     const router = useRouter();
@@ -30,6 +31,7 @@ export default function Product() {
     }
 
     const { title, price, size, collection, image } = product;
+    preloadCartThumbnail(image);
 
     const handleAddToCart = () => {
         const productToAdd = {
