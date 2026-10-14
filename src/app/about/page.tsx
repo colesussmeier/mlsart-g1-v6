@@ -4,10 +4,12 @@ import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import FadeInView from '../components/fadeInView';
 import Link from 'next/link';
+import { usePagedWheelScroll } from './usePagedWheelScroll';
 
 const About = () => {
   const urlPrefix = 'https://image-bucketa5861-dev.s3.us-east-1.amazonaws.com/About'
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  usePagedWheelScroll(scrollContainerRef);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
